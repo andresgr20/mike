@@ -21,4 +21,4 @@ export const GameContext = createContext<GameContextSettingsProps>({
   updateSettings: () => {},
 });
 
-export const GameProvider: React.FC;
+// export const GameProvider: React.FC;
