@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import Sprite from "./components/graphics/Sprite";
 import { SPRITE_SHEET_SRC } from "./helpers/consts";
+import RenderLevel from "./components/level-layout/RenderLevel";
 
 function App() {
   const [spriteSheetImage, setSpriteSheetImage] = useState(null);
   useEffect(() => {
     const image = new Image();
     image.src = SPRITE_SHEET_SRC;
+    console.log(image);
     image.onload = () => {
       setSpriteSheetImage(image);
     };
@@ -16,7 +17,7 @@ function App() {
   }
   return (
     <div>
-      <Sprite image={spriteSheetImage} frameCoord={"1x0"} />
+      <RenderLevel spriteSheetImage={spriteSheetImage} />
     </div>
   );
 }
