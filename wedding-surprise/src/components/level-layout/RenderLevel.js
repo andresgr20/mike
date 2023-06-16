@@ -1,5 +1,6 @@
 import styles from "./RenderLevel.module.css";
 import Sprite from "../graphics/Sprite";
+import { CELL_SIZE } from "../../helpers/consts";
 
 export default function RenderLevel({ spriteSheetImage }) {
   const level = {
@@ -17,8 +18,22 @@ export default function RenderLevel({ spriteSheetImage }) {
   return (
     <div className={styles.fullScreenContainer}>
       <div className={styles.gameScreen}>
-        <Sprite image={spriteSheetImage} frameCoord={"1x0"} />
-        <Sprite image={spriteSheetImage} frameCoord={"0x0"} />
+        {level.placements.map((element) => {
+          const x = element.x * CELL_SIZE + "px";
+          const y = element.y * CELL_SIZE + "px";
+          const style = {
+            position: "absolute",
+            transform: `translate3d(${x}, ${y}, 0)`,
+          };
+          return (
+            <div key={element.id} style={style}>
+              <Sprite
+                image={spriteSheetImage}
+                frameCoord={element.frameCoord}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
