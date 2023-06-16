@@ -1,9 +1,12 @@
 import styles from "./RenderLevel.module.css";
 import Sprite from "../graphics/Sprite";
 import { CELL_SIZE } from "../../helpers/consts";
-
+import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
 export default function RenderLevel({ spriteSheetImage }) {
   const level = {
+    theme: "WEDDING",
+    tilesWidth: 7,
+    tilesHeight: 7,
     placements: [
       { id: 0, x: 0, y: 2, frameCoord: "0x2" },
       { id: 1, x: 1, y: 0, frameCoord: "1x0" },
@@ -18,6 +21,7 @@ export default function RenderLevel({ spriteSheetImage }) {
   return (
     <div className={styles.fullScreenContainer}>
       <div className={styles.gameScreen}>
+        <LevelBackgroundTilesLayer level={level} image={spriteSheetImage} />
         {level.placements.map((element) => {
           const x = element.x * CELL_SIZE + "px";
           const y = element.y * CELL_SIZE + "px";
