@@ -2,7 +2,7 @@ import styles from "./RenderLevel.module.css";
 import Sprite from "../graphics/Sprite";
 import { CELL_SIZE } from "../../helpers/consts";
 import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
-export default function RenderLevel({ spriteSheetImage }) {
+export default function RenderLevel() {
   const level = {
     theme: "WEDDING",
     tilesWidth: 7,
@@ -31,10 +31,7 @@ export default function RenderLevel({ spriteSheetImage }) {
           };
           return (
             <div key={element.id} style={style}>
-              <Sprite
-                image={spriteSheetImage}
-                frameCoord={element.frameCoord}
-              />
+              <Sprite frameCoord={element.frameCoord} />
             </div>
           );
         })}

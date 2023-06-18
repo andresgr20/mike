@@ -1,7 +1,7 @@
 import { THEME_TILES_MAP } from "../../helpers/consts";
 import MapCell from "./MapCell";
 
-export default function LevelBackgroundTilesLayer({ level, image }) {
+export default function LevelBackgroundTilesLayer({ level }) {
   const widthWithWalls = level.tilesWidth + 1;
   const heightWithWalls = level.tilesHeight + 1;
   const tiles = THEME_TILES_MAP[level.theme];
@@ -27,13 +27,7 @@ export default function LevelBackgroundTilesLayer({ level, image }) {
   for (let y = 0; y <= heightWithWalls; y++) {
     for (let x = 0; x <= widthWithWalls; x++) {
       canvases.push(
-        <MapCell
-          image={image}
-          key={`${x}_${y}`}
-          x={x}
-          y={y}
-          frameCoord={"2x3"}
-        />
+        <MapCell key={`${x}_${y}`} x={x} y={y} frameCoord={"2x3"} />
       );
     }
   }
