@@ -1,0 +1,9 @@
+.player{
+    position: relative;
+}
+
+.playerBody{
+    position: absolute;
+    left: -8px;
+    top: -19px;
+}
