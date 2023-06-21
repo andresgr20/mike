@@ -1,7 +1,8 @@
-import { LEVEL_THEMES, PLACEMENT_PLAYER } from "../helpers/consts";
+import { PLACEMENT_PLAYER } from "../helpers/consts";
 import { DirectionControls } from "./DirectionControls";
 import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
+import GamesMap from "../games/GamesMap";
 
 export class LevelState {
   constructor(levelId, onEmit) {
@@ -15,10 +16,13 @@ export class LevelState {
   }
 
   start() {
-    this.theme = LEVEL_THEMES.CHASE;
-    this.tilesWidth = 8;
-    this.tilesHeight = 8;
-    this.placements = [{ id: 0, x: 2, y: 2, type: TILES.CAT }].map((config) => {
+    this.isCompleted = false;
+    const gamesData = GamesMap[this.id];
+
+    this.theme = gamesData.theme;
+    this.tilesWidth = gamesData.tilesWidth;
+    this.tilesHeight = gamesData.tilesHeight;
+    this.placements = gamesData.placements.map((config) => {
       return placementFactory.createPlacement(config, this);
     });
 
@@ -28,7 +32,7 @@ export class LevelState {
   }
 
   startGameLoop() {
-    this.gameLoop?.stop;
+    this.gameLoop?.stop();
     this.gameLoop = new GameLoop(() => {
       this.tick();
     });
@@ -45,13 +49,39 @@ export class LevelState {
 
     this.onEmit(this.getState());
   }
+
+  isPositionOutOfBounds(x, y) {
+    return (
+      x === 0 ||
+      y === 0 ||
+      x >= this.tilesWidth + 1 ||
+      y >= this.tilesHeight + 1
+    );
+  }
+
   getState() {
     return {
       theme: this.theme,
       tilesWidth: this.tilesWidth,
       tilesHeight: this.tilesHeight,
       placements: this.placements,
+      isCompleted: this.isCompleted,
     };
+  }
+
+  addPlacement(config) {
+    this.placements.push(placementFactory.createPlacement(config, this));
+  }
+
+  deletePlacement(placementToRemove) {
+    this.placements = this.placements.filter((p) => {
+      return p.id !== placementToRemove.id;
+    });
+  }
+
+  completeLevel() {
+    this.isCompleted = true;
+    this.gameLoop.stop();
   }
 
   destroy() {

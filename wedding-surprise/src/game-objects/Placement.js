@@ -16,13 +16,36 @@ export class Placement {
     this.travelPixelPerFrame = 1.5;
     this.movingPixelRemaining = 0;
     this.movingPixelDirection = DIRECTION_RIGHT;
+    this.spriteFacingDirection = DIRECTION_RIGHT;
+    this.spriteWalkFrame = 0;
+    this.hasBeenCollected = false;
   }
 
   renderComponent() {
     return null;
   }
 
+  zIndex() {
+    return 1;
+  }
+
+  addItemsToInventoryOnCollide() {
+    return null;
+  }
+
   tick() {}
+
+  isSolidForBody(_body) {
+    return false;
+  }
+
+  collect() {
+    this.hasBeenCollected = true;
+  }
+
+  canBeInteracted() {
+    return false;
+  }
 
   displayXY() {
     if (this.movingPixelRemaining > 0) {

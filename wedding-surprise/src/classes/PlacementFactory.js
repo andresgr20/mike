@@ -2,23 +2,20 @@ import { GiftPlacement } from "../game-objects/GiftPlacement";
 import { PlayerPlacement } from "../game-objects/PlayerPlacement";
 import { PLACEMENT_GIFT, PLACEMENT_PLAYER } from "../helpers/consts";
 
+const placementTypeClassMap = {
+  [PLACEMENT_GIFT]: GiftPlacement,
+  [PLACEMENT_PLAYER]: PlayerPlacement,
+};
 class PlacementFactory {
   createPlacement(config, level) {
-    const instance = this.getInstance(config, level);
-
-    return instance;
-  }
-
-  getInstance(config, level) {
-    switch (config.type) {
-      case PLACEMENT_PLAYER:
-        return new PlayerPlacement(config, level);
-      case PLACEMENT_GIFT:
-        return new GiftPlacement(config, level);
-      default:
-        console.warn("no type found");
-        return null;
+    const placementClass = placementTypeClassMap[config.type];
+    if (!placementClass) {
+      console.warn("error", config.type);
     }
+
+    const instance = new placementClass(config, level);
+    instance.id = Math.floor(Math.random() * 9999999) + 1;
+    return instance;
   }
 }
 

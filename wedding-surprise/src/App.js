@@ -10,7 +10,6 @@ function App() {
   useEffect(() => {
     const image = new Image();
     image.src = SPRITE_SHEET_SRC;
-    console.log(image);
     image.onload = () => {
       setSpriteSheetImage(image);
     };

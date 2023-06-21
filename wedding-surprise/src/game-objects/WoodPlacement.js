@@ -3,14 +3,13 @@ import Sprite from "../components/graphics/Sprite";
 import { TILES } from "../helpers/tiles";
 
 export class GiftPlacement extends Placement {
-  isSolidForBody(_body) {
-    return true;
-  }
+  // Trigger sounds on the dancefloor
   canBeInteracted(_body) {
     return true;
   }
+
   renderComponent() {
     // need to add the coordinates of the gifts
-    return <Sprite frameCoord={TILES.RED_GIFT} />;
+    return <Sprite frameCoord={TILES.WOODEN_FLOOR} />;
   }
 }

@@ -27,7 +27,12 @@ export default function LevelBackgroundTilesLayer({ level }) {
   for (let y = 0; y <= heightWithWalls; y++) {
     for (let x = 0; x <= widthWithWalls; x++) {
       canvases.push(
-        <MapCell key={`${x}_${y}`} x={x} y={y} frameCoord={"2x3"} />
+        <MapCell
+          key={`${x}_${y}`}
+          x={x}
+          y={y}
+          frameCoord={getBackgroundTile(x, y)}
+        />
       );
     }
   }

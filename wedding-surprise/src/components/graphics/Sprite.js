@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import { CELL_SIZE } from "../../helpers/consts";
 import { spriteSheetImageAtom } from "../../atoms/spriteSheetImageAtom";
+import { useRecoilValue } from "recoil";
 
 function Sprite({ frameCoord, size = 16 }) {
   const spriteSheetImage = useRecoilValue(spriteSheetImageAtom);
