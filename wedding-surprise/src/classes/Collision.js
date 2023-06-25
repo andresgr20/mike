@@ -24,7 +24,9 @@ export class Collision {
   withPlacementAddsToInventory() {
     return this.placementsAtPosition.find((p) => {
       return (
-        !p.hasBeenCollected && p.addsItemToInventoryOnCollide(this.forBody)
+        p.canBeCollected &&
+        !p.hasBeenCollected &&
+        p.addsItemToInventoryOnCollide(this.forBody)
       );
     });
   }
@@ -32,6 +34,12 @@ export class Collision {
   withInteract() {
     return this.placementsAtPosition.find((p) => {
       return p.canBeInteracted();
+    });
+  }
+
+  withMusicTiles() {
+    return this.placementsAtPosition.find((p) => {
+      return p.canAddMusicEffect();
     });
   }
 }

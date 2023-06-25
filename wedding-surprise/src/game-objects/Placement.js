@@ -18,6 +18,7 @@ export class Placement {
     this.movingPixelDirection = DIRECTION_RIGHT;
     this.spriteFacingDirection = DIRECTION_RIGHT;
     this.spriteWalkFrame = 0;
+    this.canBeCollected = false;
     this.hasBeenCollected = false;
   }
 
@@ -27,6 +28,10 @@ export class Placement {
 
   zIndex() {
     return 1;
+  }
+
+  canAddMusicEffect() {
+    return false;
   }
 
   addItemsToInventoryOnCollide() {

@@ -1,10 +1,19 @@
 import { GiftPlacement } from "../game-objects/GiftPlacement";
+import { MusicPlacement } from "../game-objects/MusicPlacement";
 import { PlayerPlacement } from "../game-objects/PlayerPlacement";
-import { PLACEMENT_GIFT, PLACEMENT_PLAYER } from "../helpers/consts";
+import { WoodPlacement } from "../game-objects/WoodPlacement";
+import {
+  PLACEMENT_GIFT,
+  PLACEMENT_MUSIC,
+  PLACEMENT_PLAYER,
+  PLACEMENT_WOOD,
+} from "../helpers/consts";
 
 const placementTypeClassMap = {
   [PLACEMENT_GIFT]: GiftPlacement,
   [PLACEMENT_PLAYER]: PlayerPlacement,
+  [PLACEMENT_WOOD]: WoodPlacement,
+  [PLACEMENT_MUSIC]: MusicPlacement,
 };
 class PlacementFactory {
   createPlacement(config, level) {

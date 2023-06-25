@@ -9,6 +9,8 @@ export class GiftPlacement extends Placement {
   canBeInteracted(_body) {
     return true;
   }
+
+  // gift type chang
   renderComponent() {
     // need to add the coordinates of the gifts
     return <Sprite frameCoord={TILES.RED_GIFT} />;

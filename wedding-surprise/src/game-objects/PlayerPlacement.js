@@ -3,20 +3,20 @@ import Player from "../components/graphics/Player";
 import {
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
-  PLAYER_RUN_1,
-  PLAYER_RUN_2,
+  PLAYER_1_RUN_1,
+  PLAYER_1_RUN_2,
   BODY_SKINS,
   Z_INDEX_LAYER_SIZE,
   directionUpdateMap,
-  PLACEMENT_GIFT,
+  PLACEMENT_MUSIC,
 } from "../helpers/consts";
 import { Collision } from "../classes/Collision";
 import { TILES } from "../helpers/tiles";
 
 const playerSkinMap = {
-  [BODY_SKINS.NORMAL]: [TILES.PLAYER_LEFT, TILES.PLAYER_RIGHT],
-  [PLAYER_RUN_1]: [TILES.PLAYER_RUN_1_LEFT, TILES.PLAYER_RUN_1_RIGHT],
-  [PLAYER_RUN_2]: [TILES.PLAYER_RUN_2_LEFT, TILES.PLAYER_RUN_2_RIGHT],
+  [BODY_SKINS.NORMAL]: [TILES.PLAYER_1_LEFT, TILES.PLAYER_1_RIGHT],
+  [PLAYER_1_RUN_1]: [TILES.PLAYER_1_RUN_1_LEFT, TILES.PLAYER_1_RUN_1_RIGHT],
+  [PLAYER_1_RUN_2]: [TILES.PLAYER_1_RUN_2_LEFT, TILES.PLAYER_1_RUN_2_RIGHT],
 };
 export class PlayerPlacement extends Placement {
   controllerMoveRequested(direction) {
@@ -99,6 +99,7 @@ export class PlayerPlacement extends Placement {
   handleCollisions() {
     const collision = new Collision(this, this.level);
     const collideThatAddsToInvetory = collision.withPlacementAddsToInventory();
+    const musicTiles = collision.withMusicTiles();
     if (collideThatAddsToInvetory) {
       collideThatAddsToInvetory.collect();
       //   this.level.addPlacement({
@@ -106,6 +107,13 @@ export class PlayerPlacement extends Placement {
       //     x: this.x,
       //     y: this.y,
       //   });
+    }
+    if (musicTiles) {
+      this.level.addPlacement({
+        type: PLACEMENT_MUSIC,
+        x: this.x,
+        y: this.y,
+      });
     }
   }
 
@@ -117,7 +125,8 @@ export class PlayerPlacement extends Placement {
     const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;
 
     if (this.movingPixelRemaining > 0) {
-      const walkKey = this.spriteWalkFrame === 0 ? PLAYER_RUN_1 : PLAYER_RUN_2;
+      const walkKey =
+        this.spriteWalkFrame === 0 ? PLAYER_1_RUN_1 : PLAYER_1_RUN_2;
       return playerSkinMap[walkKey][index];
     }
     return playerSkinMap[BODY_SKINS.NORMAL][index];

@@ -14,8 +14,7 @@ export default function Player({ frameCoord, yTranslate }) {
           transform: `translateY(${yTranslate}px)`,
         }}
       >
-        {/* Need to change to 36, the characters need to be 36 */}
-        <Sprite frameCoord={frameCoord} size={16} />
+        <Sprite frameCoord={frameCoord} size={36} />
       </div>
     </div>
   );

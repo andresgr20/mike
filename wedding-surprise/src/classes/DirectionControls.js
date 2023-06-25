@@ -8,12 +8,12 @@ import {
 export class DirectionControls {
   constructor() {
     this.DirectionKeys = {
-      ArrowDown: DIRECTION_DOWN,
-      ArrowUp: DIRECTION_UP,
+      ArrowDown: DIRECTION_UP,
+      ArrowUp: DIRECTION_DOWN,
       ArrowLeft: DIRECTION_LEFT,
       ArrowRight: DIRECTION_RIGHT,
-      s: DIRECTION_DOWN,
-      w: DIRECTION_UP,
+      s: DIRECTION_UP,
+      w: DIRECTION_DOWN,
       a: DIRECTION_LEFT,
       d: DIRECTION_RIGHT,
     };
