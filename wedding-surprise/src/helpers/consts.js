@@ -1,6 +1,6 @@
 export const CELL_SIZE = 16; // one grid cell in the map
 export const Z_INDEX_LAYER_SIZE = 10;
-export const SPRITE_SHEET_SRC = "/wedding-v4.png";
+export const SPRITE_SHEET_SRC = "/wedding-v5.png";
 export const PLACEMENT_PLAYER = "PLAYER";
 export const PLACEMENT_GIFT = "GIFT";
 export const PLACEMENT_WOOD = "WOOD";
@@ -37,7 +37,7 @@ export const THEME_BACKGROUNDS = {
   [LEVEL_THEMES.FIGHTING]: "red",
   [LEVEL_THEMES.WEED]: "green",
   [LEVEL_THEMES.RUNNING]: "black",
-  [LEVEL_THEMES.HIDING]: "",
+  [LEVEL_THEMES.HIDING]: "#2d1a17",
 };
 
 export const directionUpdateMap = {
@@ -66,6 +66,6 @@ export const THEME_TILES_MAP = {
     TOP: "6x2",
     LEFT: "5x3",
     RIGHT: "7x3",
-    BOTTOM: "7x4",
+    BOTTOM: "6x4",
   },
 };

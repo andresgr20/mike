@@ -26,6 +26,11 @@ export default function LevelBackgroundTilesLayer({ level }) {
   let canvases = [];
   for (let y = 0; y <= heightWithWalls; y++) {
     for (let x = 0; x <= widthWithWalls; x++) {
+      if (y === heightWithWalls) {
+        if (x === 0 || x === widthWithWalls) {
+          continue;
+        }
+      }
       canvases.push(
         <MapCell
           key={`${x}_${y}`}

@@ -18,8 +18,10 @@ export const TILES = {
   SHADOW: "3x5", // 3x5 blavl
 
   // NPCs, CHARACTERs
-  CAT: "1x1",
+  CAT_RIGHT: "1x1",
   CAT_MOVE_RIGHT: "1x2",
+  CAT_MOVE_LEFT: "13x1",
+  CAT_LEFT: "13x2",
   CAT_ICON: "1x3",
   PLAYER_1_LEFT: "0x7",
   PLAYER_1_RUN_1_LEFT: "4x7",
