@@ -10,8 +10,8 @@ export class MusicPlacement extends Placement {
   }
 
   tick() {
-    if (this.frame < 6) {
-      this.frame += 0.01;
+    if (this.frame < 4) {
+      this.frame += 0.1;
       return;
     }
     this.level.deletePlacement(this);
@@ -22,7 +22,7 @@ export class MusicPlacement extends Placement {
   }
 
   renderComponent() {
-    const frameCoord = `MUSIC_NOTE_${Math.ceil(this.frame)}`;
+    const frameCoord = `MUSIC_NOTE_${Math.floor(this.frame)}`;
     console.log(frameCoord);
     return <Sprite frameCoord={TILES[frameCoord]} />;
   }

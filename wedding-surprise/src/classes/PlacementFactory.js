@@ -1,4 +1,5 @@
 import { GiftPlacement } from "../game-objects/GiftPlacement";
+import { InteractivePlacement } from "../game-objects/InteractivePlacement";
 import { MusicPlacement } from "../game-objects/MusicPlacement";
 import { PlayerPlacement } from "../game-objects/PlayerPlacement";
 import { WoodPlacement } from "../game-objects/WoodPlacement";
@@ -7,6 +8,7 @@ import {
   PLACEMENT_MUSIC,
   PLACEMENT_PLAYER,
   PLACEMENT_WOOD,
+  PLACEMENT_INTERACTIVE,
 } from "../helpers/consts";
 
 const placementTypeClassMap = {
@@ -14,6 +16,7 @@ const placementTypeClassMap = {
   [PLACEMENT_PLAYER]: PlayerPlacement,
   [PLACEMENT_WOOD]: WoodPlacement,
   [PLACEMENT_MUSIC]: MusicPlacement,
+  [PLACEMENT_INTERACTIVE]: InteractivePlacement,
 };
 class PlacementFactory {
   createPlacement(config, level) {

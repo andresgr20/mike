@@ -10,9 +10,7 @@ export class GiftPlacement extends Placement {
     return true;
   }
 
-  // gift type chang
   renderComponent() {
-    // need to add the coordinates of the gifts
-    return <Sprite frameCoord={TILES.RED_GIFT} />;
+    return <Sprite frameCoord={this.tile} />;
   }
 }

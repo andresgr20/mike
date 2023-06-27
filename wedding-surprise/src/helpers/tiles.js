@@ -1,15 +1,13 @@
 export const TILES = {
   // WEDDING
   WEDDING_CAKE: "0x0",
-  YELLOW_GIFT: "2x0",
+  YELLOW_GIFT: "1x0",
   RED_GIFT: "2x0",
   SPECIAL_GIFT: "3x0",
-  MUSIC_NOTE_1: "5x0",
-  MUSIC_NOTE_2: "6x0",
-  MUSIC_NOTE_3: "5x0",
-  MUSIC_NOTE_4: "6x0",
-  MUSIC_NOTE_5: "5x0",
-  MUSIC_NOTE_6: "6x0",
+  MUSIC_NOTE_1: "5x1",
+  MUSIC_NOTE_2: "6x1",
+  MUSIC_NOTE_3: "7x1",
+  MUSIC_NOTE_4: "8x1",
 
   // SPECIAL FLOOR
   WOODEN_FLOOR: "0x2",
@@ -17,11 +15,11 @@ export const TILES = {
   //UTILITIES
   LOCK: "4x0",
   UNLOCK: "4x1",
-  SHADOW: "3x5",
+  SHADOW: "3x5", // 3x5 blavl
 
   // NPCs, CHARACTERs
   CAT: "1x1",
-  CAT_MOVE: "1x2",
+  CAT_MOVE_RIGHT: "1x2",
   CAT_ICON: "1x3",
   PLAYER_1_LEFT: "0x7",
   PLAYER_1_RUN_1_LEFT: "4x7",
@@ -45,6 +43,8 @@ export const TILES = {
   // FOOD
   TOMATO: "6x2",
   APPLE: "6x1",
-  PLATE: "7x1",
-  BOX: "7x2",
+  PLATE: "4x5",
+
+  // HIDE
+  BUSH: "8x4",
 };

@@ -100,6 +100,7 @@ export class PlayerPlacement extends Placement {
     const collision = new Collision(this, this.level);
     const collideThatAddsToInvetory = collision.withPlacementAddsToInventory();
     const musicTiles = collision.withMusicTiles();
+    const interactableTiles = collision.withInteract();
     if (collideThatAddsToInvetory) {
       collideThatAddsToInvetory.collect();
       //   this.level.addPlacement({
@@ -114,6 +115,9 @@ export class PlayerPlacement extends Placement {
         x: this.x,
         y: this.y,
       });
+    }
+    if (interactableTiles) {
+      // show te
     }
   }
 

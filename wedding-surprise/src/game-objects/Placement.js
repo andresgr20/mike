@@ -12,6 +12,8 @@ export class Placement {
     this.y = properties.y;
     this.type = properties.type;
     this.level = level;
+    this.tile = properties.tile ?? null;
+    this.properties = properties.message ?? null;
 
     this.travelPixelPerFrame = 1.5;
     this.movingPixelRemaining = 0;
@@ -24,6 +26,14 @@ export class Placement {
 
   renderComponent() {
     return null;
+  }
+
+  getMessage() {
+    return this.message;
+  }
+
+  getTile() {
+    return this.tile;
   }
 
   zIndex() {

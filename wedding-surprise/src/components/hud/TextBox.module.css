@@ -1,0 +1,12 @@
+.outerContainer {
+    position: absolute;
+    inset: 0;
+    z-index: var(--ui-popup-z-index);
+    display: flex;
+    align-items: left;
+    justify-content: left;
+}
+
+.popUpContainer{
+    position: relative;
+}

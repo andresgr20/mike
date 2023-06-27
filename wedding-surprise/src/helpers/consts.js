@@ -6,8 +6,20 @@ export const PLACEMENT_GIFT = "GIFT";
 export const PLACEMENT_WOOD = "WOOD";
 export const PLACEMENT_SOLID = "SOLID";
 export const PLACEMENT_MUSIC = "MUSIC";
+export const PLACEMENT_INTERACTIVE = "INTERACTIVE";
 export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
+  COOKING: "COOKING",
+  FIGHTING: "FIGHTING",
+  WEED: "WEED",
+  RUNNING: "RUNNING",
+  HIDING: "HIDING",
+};
+
+export const MESSAGE_TYPES = {
+  NEXT_GAME: "NEXT GAME",
+  TEXT: "TEXT",
+  GO_BACK: "GO BACK",
 };
 
 export const DIRECTION_LEFT = "LEFT";
@@ -21,6 +33,11 @@ export const BODY_SKINS = {
 
 export const THEME_BACKGROUNDS = {
   [LEVEL_THEMES.WEDDING]: "#696a6a",
+  [LEVEL_THEMES.COOKING]: "blue",
+  [LEVEL_THEMES.FIGHTING]: "red",
+  [LEVEL_THEMES.WEED]: "green",
+  [LEVEL_THEMES.RUNNING]: "black",
+  [LEVEL_THEMES.HIDING]: "",
 };
 
 export const directionUpdateMap = {
@@ -43,5 +60,12 @@ export const THEME_TILES_MAP = {
     LEFT: "1x3",
     RIGHT: "3x3",
     BOTTOM: "2x4",
+  },
+  [LEVEL_THEMES.HIDING]: {
+    FLOOR: "6x3",
+    TOP: "6x2",
+    LEFT: "5x3",
+    RIGHT: "7x3",
+    BOTTOM: "7x4",
   },
 };
