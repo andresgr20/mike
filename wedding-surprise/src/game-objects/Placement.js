@@ -13,7 +13,8 @@ export class Placement {
     this.type = properties.type;
     this.level = level;
     this.tile = properties.tile ?? null;
-    this.properties = properties.message ?? null;
+    this.message = properties.message ?? null;
+    this.next_game_id = properties.next_game_id ?? null;
 
     this.travelPixelPerFrame = 1.5;
     this.movingPixelRemaining = 0;
@@ -60,6 +61,10 @@ export class Placement {
 
   canBeInteracted() {
     return false;
+  }
+
+  tickMoveAi() {
+    return null;
   }
 
   displayXY() {

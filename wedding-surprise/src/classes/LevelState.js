@@ -3,6 +3,7 @@ import { DirectionControls } from "./DirectionControls";
 import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
 import GamesMap from "../games/GamesMap";
+import { Clock } from "./Clock";
 
 export class LevelState {
   constructor(levelId, onEmit) {
@@ -17,18 +18,27 @@ export class LevelState {
 
   start() {
     this.isCompleted = false;
+    this.gameOver = false;
     const gamesData = GamesMap[this.id];
-
     this.theme = gamesData.theme;
     this.tilesWidth = gamesData.tilesWidth;
     this.tilesHeight = gamesData.tilesHeight;
+    this.score = gamesData.score ?? 0;
+    this.winningScore = gamesData.winningScore ?? 0;
     this.placements = gamesData.placements.map((config) => {
       return placementFactory.createPlacement(config, this);
     });
 
     // cache the location of the player
     this.heroRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
+
+    this.clock = new Clock(20, this);
     this.startGameLoop();
+  }
+
+  getScore() {
+    console.log(this.score);
+    return this.score;
   }
 
   startGameLoop() {
@@ -46,6 +56,8 @@ export class LevelState {
     this.placements.forEach((placement) => {
       placement.tick();
     });
+
+    this.clock.tick();
 
     this.onEmit(this.getState());
   }
@@ -66,11 +78,19 @@ export class LevelState {
       tilesHeight: this.tilesHeight,
       placements: this.placements,
       isCompleted: this.isCompleted,
+      score: this.getScore(),
+      gameOver: this.gameOver,
+      secondsRemaining: this.clock.secondsRemaining,
     };
   }
 
   addPlacement(config) {
     this.placements.push(placementFactory.createPlacement(config, this));
+  }
+
+  setGameOver() {
+    this.gameOver = true;
+    this.gameLoop.stop();
   }
 
   deletePlacement(placementToRemove) {

@@ -9,6 +9,10 @@ export class InteractivePlacement extends Placement {
     return true;
   }
 
+  showInteraction() {
+    // call the textbox, stop the game and show the message
+  }
+
   renderComponent() {
     return <Sprite frameCoord={this.tile} />;
   }

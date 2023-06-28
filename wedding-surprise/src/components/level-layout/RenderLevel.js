@@ -8,6 +8,9 @@ import { useRecoilValue } from "recoil";
 import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 import GameCompleteMessage from "../hud/GameCompleteMessage";
 import soundManager, { MUSIC } from "../../classes/Sounds";
+import GameScore from "../hud/GameScore";
+import { Clock } from "../../classes/Clock";
+import ClockCount from "../hud/ClockCount";
 
 export default function RenderLevel() {
   const [level, setLevel] = useState(null);
@@ -45,6 +48,8 @@ export default function RenderLevel() {
         background: THEME_BACKGROUNDS[level.theme],
       }}
     >
+      <GameScore level={level} />
+      <ClockCount level={level} />
       <div className={styles.gameScreen}>
         <LevelBackgroundTilesLayer level={level} />
         <LevelPlacementLayer level={level} />

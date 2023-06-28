@@ -9,6 +9,8 @@ const game = {
   theme: LEVEL_THEMES.HIDING,
   tilesWidth: 10,
   tilesHeight: 12,
+  score: 0,
+  winningScore: 3,
   placements: [{ x: 1, y: 1, type: PLACEMENT_PLAYER }],
 };
 

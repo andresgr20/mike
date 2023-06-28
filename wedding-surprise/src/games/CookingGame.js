@@ -9,6 +9,8 @@ import { TILES } from "../helpers/tiles";
 
 const game = {
   theme: LEVEL_THEMES.COOKING,
+  score: 0,
+  winningScore: 5,
   tilesWidth: 8,
   tilesHeight: 8,
   placements: [

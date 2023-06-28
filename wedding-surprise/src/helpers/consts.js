@@ -7,6 +7,8 @@ export const PLACEMENT_WOOD = "WOOD";
 export const PLACEMENT_SOLID = "SOLID";
 export const PLACEMENT_MUSIC = "MUSIC";
 export const PLACEMENT_INTERACTIVE = "INTERACTIVE";
+
+export const GAMEOVER_CLOCK = "CLOCK";
 export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
   COOKING: "COOKING",
