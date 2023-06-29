@@ -10,7 +10,8 @@ export class GiftPlacement extends Placement {
     return true;
   }
 
-  showInteraction(){
+  doInteraction() {
+    // would call text box wiuth the game id and pass th einfo a long
     // call the textbox, stop the game and show the message, with the hook to get to the next level
   }
 

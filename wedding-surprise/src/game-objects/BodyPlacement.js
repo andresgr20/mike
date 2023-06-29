@@ -1,18 +1,12 @@
 import { Placement } from "./Placement";
-import { Placement } from "./Placement";
-import Player from "../components/graphics/Player";
 import {
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
-  PLAYER_1_RUN_1,
-  PLAYER_1_RUN_2,
-  BODY_SKINS,
   Z_INDEX_LAYER_SIZE,
   directionUpdateMap,
   PLACEMENT_MUSIC,
 } from "../helpers/consts";
 import { Collision } from "../classes/Collision";
-import { TILES } from "../helpers/tiles";
 export class BodyPlacement extends Placement {
   getCollisionAtNextPosition(direction) {
     const { x, y } = directionUpdateMap[direction];
@@ -24,7 +18,7 @@ export class BodyPlacement extends Placement {
     });
   }
 
-  getInteractableAtNextPosition(direction) {
+  getInteractionsAttNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withInteract();
   }
@@ -74,6 +68,16 @@ export class BodyPlacement extends Placement {
     this.x += x;
     this.y += y;
     this.handleCollisions();
+    this.onPostMove();
+    this.handleMoveSounds();
+  }
+
+  handleMoveSounds() {
+    return null;
+  }
+
+  onPostMove() {
+    return null;
   }
 
   handleCollisions() {
@@ -94,17 +98,7 @@ export class BodyPlacement extends Placement {
 
   tick() {
     this.tickMovingPixelProgress();
-  }
-
-  getFrame() {
-    const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;
-
-    if (this.movingPixelRemaining > 0) {
-      const walkKey =
-        this.spriteWalkFrame === 0 ? PLAYER_1_RUN_1 : PLAYER_1_RUN_2;
-      return playerSkinMap[walkKey][index];
-    }
-    return playerSkinMap[BODY_SKINS.NORMAL][index];
+    this.tickMoveAi();
   }
 
   getYTranslate() {

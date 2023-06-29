@@ -9,16 +9,17 @@ import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 import GameCompleteMessage from "../hud/GameCompleteMessage";
 import soundManager, { MUSIC } from "../../classes/Sounds";
 import GameScore from "../hud/GameScore";
-import { Clock } from "../../classes/Clock";
 import ClockCount from "../hud/ClockCount";
+import { HidingGame } from "../../game-logic/HidingGame";
 
 export default function RenderLevel() {
   const [level, setLevel] = useState(null);
+  // would need to use an atom to save the values when going back to the other games
   const currentLevelId = useRecoilValue(currentLevelIdAtom);
 
   useEffect(() => {
     // Create and sub to state changes
-    const levelState = new LevelState(currentLevelId, (newState) => {
+    const levelState = new HidingGame(currentLevelId, (newState) => {
       setLevel(newState);
     });
 
@@ -49,7 +50,7 @@ export default function RenderLevel() {
       }}
     >
       <GameScore level={level} />
-      <ClockCount level={level} />
+      {level.time && <ClockCount level={level} />}
       <div className={styles.gameScreen}>
         <LevelBackgroundTilesLayer level={level} />
         <LevelPlacementLayer level={level} />

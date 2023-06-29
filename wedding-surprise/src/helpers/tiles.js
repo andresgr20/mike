@@ -49,4 +49,6 @@ export const TILES = {
 
   // HIDE
   BUSH: "8x4",
+  BUSH_1: "7x2",
+  BUSH_2: "8x2",
 };

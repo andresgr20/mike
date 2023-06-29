@@ -9,8 +9,9 @@ export class InteractivePlacement extends Placement {
     return true;
   }
 
-  showInteraction() {
-    // call the textbox, stop the game and show the message
+  doInteraction() {
+    // game
+    // action with the thing
   }
 
   renderComponent() {

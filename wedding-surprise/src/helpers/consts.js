@@ -1,12 +1,14 @@
 export const CELL_SIZE = 16; // one grid cell in the map
 export const Z_INDEX_LAYER_SIZE = 10;
-export const SPRITE_SHEET_SRC = "/wedding-v5.png";
+export const SPRITE_SHEET_SRC = "/wedding-v6.png";
 export const PLACEMENT_PLAYER = "PLAYER";
 export const PLACEMENT_GIFT = "GIFT";
 export const PLACEMENT_WOOD = "WOOD";
 export const PLACEMENT_SOLID = "SOLID";
 export const PLACEMENT_MUSIC = "MUSIC";
 export const PLACEMENT_INTERACTIVE = "INTERACTIVE";
+export const PLACEMENT_BUSH = "BUSH";
+export const PLACEMENT_CAT = "CAT";
 
 export const GAMEOVER_CLOCK = "CLOCK";
 export const LEVEL_THEMES = {

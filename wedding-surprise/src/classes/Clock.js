@@ -21,7 +21,6 @@ export class Clock {
 
       if (this.secondsRemaining <= WARNING_SOUND_SECONDS) {
         // SFX
-        console.log("hi");
       }
     }
   }

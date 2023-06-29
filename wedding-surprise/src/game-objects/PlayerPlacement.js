@@ -1,5 +1,3 @@
-import { Placement } from "./Placement";
-import Player from "../components/graphics/Player";
 import {
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
@@ -7,32 +5,49 @@ import {
   PLAYER_1_RUN_2,
   BODY_SKINS,
   Z_INDEX_LAYER_SIZE,
-  directionUpdateMap,
-  PLACEMENT_MUSIC,
+  LEVEL_THEMES,
 } from "../helpers/consts";
-import { Collision } from "../classes/Collision";
 import { TILES } from "../helpers/tiles";
 import { BodyPlacement } from "./BodyPlacement";
+import Body from "../components/graphics/Body";
+import soundManager, { SFX } from "../classes/Sounds";
 
 const playerSkinMap = {
   [BODY_SKINS.NORMAL]: [TILES.PLAYER_1_LEFT, TILES.PLAYER_1_RIGHT],
   [PLAYER_1_RUN_1]: [TILES.PLAYER_1_RUN_1_LEFT, TILES.PLAYER_1_RUN_1_RIGHT],
   [PLAYER_1_RUN_2]: [TILES.PLAYER_1_RUN_2_LEFT, TILES.PLAYER_1_RUN_2_RIGHT],
 };
-export class PlayerPlacement extends 
-BodyPlacement {
+export class PlayerPlacement extends BodyPlacement {
+  constructor(properties, level) {
+    super(properties, level);
+    this.canCollectItems = true;
+    if (level.theme === LEVEL_THEMES.HIDING) {
+      this.distance = this.getCurrentDistanceFromTarget();
+      this.maxDistance = Math.sqrt(
+        level.tilesWidth ** 2 + level.tilesHeight ** 2
+      );
+      soundManager.setVolume(this.normalizeSound);
+    }
+  }
   controllerMoveRequested(direction) {
     if (this.movingPixelRemaining > 0) {
       return;
     }
 
-    const interactable = this.getInteractableAtNextPosition(direction);
+    const interactions = this.getInteractionsAttNextPosition(direction);
 
-    // Need to see if they can be interactable
-    if (interactable) {
-      interactable.showInteraction();
-      return;
+    if (interactions) {
+      interactions.doInteraction();
     }
+    // would need to mount the things to make it interactable and then tear it donw
+
+    // // Need to see if they can be interactable
+    // if (interactions) {
+    //   useKeyPress("space", (interactable) => {
+    //     this.handleInteractions(interactable);
+    //   });
+    // }
+
     if (this.isSolidAtNextPostion(direction)) {
       return;
     }
@@ -47,6 +62,22 @@ BodyPlacement {
     this.tickMovingPixelProgress();
   }
 
+  handleInteraction(interaction) {
+    interaction.doInteraction();
+    return;
+  }
+
+  // using pytagorean to find the closest one and play the sounds
+  getCurrentDistanceFromTarget() {
+    const [catX, catY] = this.level.getCatCoordinates();
+    return Math.sqrt((this.x - catX) ** 2 + (this.y - catY) ** 2);
+  }
+
+  handleMoveSounds() {
+    this.distance = this.getCurrentDistanceFromTarget();
+    soundManager.setVolume(this.normalizeSound());
+    soundManager.playSfx(SFX.MEOW);
+  }
   getFrame() {
     const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;
 
@@ -58,13 +89,21 @@ BodyPlacement {
     return playerSkinMap[BODY_SKINS.NORMAL][index];
   }
 
+  normalizeSound() {
+    return 1 - (this.distance / this.maxDistance) * (1 - 0.1) + 0.01;
+  }
+
   zIndex() {
     // anything with a higher value with appear on top
     return this.y * Z_INDEX_LAYER_SIZE + 1;
   }
   renderComponent() {
     return (
-      <Player frameCoord={this.getFrame()} yTranslate={this.getYTranslate()} />
+      <Body
+        frameCoord={this.getFrame()}
+        yTranslate={this.getYTranslate}
+        showShadow
+      />
     );
   }
 }

@@ -22,13 +22,16 @@ export class Collision {
   }
 
   withPlacementAddsToInventory() {
-    return this.placementsAtPosition.find((p) => {
-      return (
-        p.canBeCollected &&
-        !p.hasBeenCollected &&
-        p.addsItemToInventoryOnCollide(this.forBody)
-      );
-    });
+    if (this.forBody.canCollectItems) {
+      return this.placementsAtPosition.find((p) => {
+        return (
+          p.canBeCollected &&
+          !p.hasBeenCollected &&
+          p.addsItemsToInventoryOnCollide(this.forBody)
+        );
+      });
+    }
+    return null;
   }
 
   withInteract() {

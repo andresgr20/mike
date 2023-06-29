@@ -23,7 +23,6 @@ export class MusicPlacement extends Placement {
 
   renderComponent() {
     const frameCoord = `MUSIC_NOTE_${Math.floor(this.frame)}`;
-    console.log(frameCoord);
     return <Sprite frameCoord={TILES[frameCoord]} />;
   }
 }
