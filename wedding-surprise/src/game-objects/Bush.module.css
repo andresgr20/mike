@@ -1,8 +1,0 @@
-.bodyPlacement{
-    position: "absolute"; left: 0; top: 0;
-}
-
-.topBody{
-    position: relative;
-    z-index: 3300000;
-}

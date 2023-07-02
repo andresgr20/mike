@@ -11,6 +11,8 @@ import soundManager, { MUSIC } from "../../classes/Sounds";
 import GameScore from "../hud/GameScore";
 import ClockCount from "../hud/ClockCount";
 import { HidingGame } from "../../game-logic/HidingGame";
+import GameOver from "../hud/GameOver";
+import { ZeldaGame } from "../../game-logic/ZeldaGame";
 
 export default function RenderLevel() {
   const [level, setLevel] = useState(null);
@@ -19,7 +21,7 @@ export default function RenderLevel() {
 
   useEffect(() => {
     // Create and sub to state changes
-    const levelState = new HidingGame(currentLevelId, (newState) => {
+    const levelState = new ZeldaGame(currentLevelId, (newState) => {
       setLevel(newState);
     });
 
@@ -54,8 +56,9 @@ export default function RenderLevel() {
       <div className={styles.gameScreen}>
         <LevelBackgroundTilesLayer level={level} />
         <LevelPlacementLayer level={level} />
-        {level.isCompleted && <GameCompleteMessage />}
       </div>
+      {level.isCompleted && <GameCompleteMessage />}
+      {level.gameOver && <GameOver />}
     </div>
   );
 }

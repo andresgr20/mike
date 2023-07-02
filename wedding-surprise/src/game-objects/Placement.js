@@ -57,6 +57,7 @@ export class Placement {
 
   collect() {
     this.hasBeenCollected = true;
+    this.level.inventory.add(this.addsItemToInventoryOnCollide());
   }
 
   canBeInteracted() {
@@ -64,6 +65,14 @@ export class Placement {
   }
 
   tickMoveAi() {
+    return null;
+  }
+
+  canBeUnlocked() {
+    return false;
+  }
+
+  damagesBodyOnCollide(_body) {
     return null;
   }
 

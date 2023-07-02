@@ -48,6 +48,12 @@ export class PlayerPlacement extends BodyPlacement {
     //   });
     // }
 
+    const possibleLock = this.getLockAtNextPosition(direction);
+    if (possibleLock) {
+      possibleLock.unlock();
+      return;
+    }
+
     if (this.isSolidAtNextPostion(direction)) {
       return;
     }
@@ -73,6 +79,10 @@ export class PlayerPlacement extends BodyPlacement {
     return Math.sqrt((this.x - catX) ** 2 + (this.y - catY) ** 2);
   }
 
+  getLockAtNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    return collision.withLock();
+  }
   handleMoveSounds() {
     this.distance = this.getCurrentDistanceFromTarget();
     soundManager.setVolume(this.normalizeSound());

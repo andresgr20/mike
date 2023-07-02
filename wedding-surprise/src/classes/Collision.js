@@ -45,4 +45,10 @@ export class Collision {
       return p.canAddMusicEffect();
     });
   }
+
+  withLock() {
+    return this.placementsAtPosition.find((p) => {
+      return p.canBeUnlocked();
+    });
+  }
 }

@@ -9,6 +9,8 @@ export const PLACEMENT_MUSIC = "MUSIC";
 export const PLACEMENT_INTERACTIVE = "INTERACTIVE";
 export const PLACEMENT_BUSH = "BUSH";
 export const PLACEMENT_CAT = "CAT";
+export const PLACEMENT_LOCK = "LOCK";
+export const PLACEMENT_KEY = "KEY";
 
 export const GAMEOVER_CLOCK = "CLOCK";
 export const LEVEL_THEMES = {
@@ -20,6 +22,11 @@ export const LEVEL_THEMES = {
   HIDING: "HIDING",
 };
 
+export const KEYS = {
+  GOLDEN: "GOLDEN",
+  WOODEN: "WOODEN",
+  BLUE: "BLUE",
+};
 export const MESSAGE_TYPES = {
   NEXT_GAME: "NEXT GAME",
   TEXT: "TEXT",

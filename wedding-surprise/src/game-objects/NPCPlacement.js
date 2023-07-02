@@ -79,6 +79,8 @@ export class NPCPlacement extends BodyPlacement {
       this.spriteFacingDirection === DIRECTION_LEFT
         ? TILES.CAT_RIGHT
         : TILES.CAT_LEFT;
+
+    // this would be based on the name
     return (
       <Body frameCoord={frameCoord} yTranslate={this.yTranslate()} showShadow />
     );

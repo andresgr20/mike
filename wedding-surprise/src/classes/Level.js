@@ -4,6 +4,7 @@ import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
 import GamesMap from "../games/GamesMap";
 import { Clock } from "./Clock";
+import { LevelAnimatedFrames } from "./LevelAnimatedFrames";
 
 export class Level {
   constructor(levelId, onEmit) {
@@ -11,6 +12,8 @@ export class Level {
     this.onEmit = onEmit;
 
     this.directionControls = new DirectionControls();
+
+    this.animatedFrames = new LevelAnimatedFrames();
 
     // starts the level
     this.setUp();
@@ -58,6 +61,7 @@ export class Level {
       placement.tick();
     });
 
+    this.animatedFrames.tick();
     this.clock.tick();
 
     this.onEmit(this.getState());
