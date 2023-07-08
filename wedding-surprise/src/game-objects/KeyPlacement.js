@@ -9,7 +9,7 @@ export class KeyPlacement extends Placement {
     this.color = properties.color ?? KEYS.BLUE;
   }
   addsItemsToInventoryOnCollide() {
-    return `KEY_${this.color}`;
+    return `${this.color}_KEY`;
   }
 
   renderComponent() {
@@ -17,12 +17,12 @@ export class KeyPlacement extends Placement {
       switch (this.color) {
         case KEYS.BLUE:
           return TILES.BLUE_KEY;
-        case KEYS.WOODEN:
-          return TILES.WOODEN_KEY;
+        case KEYS.SILVER:
+          return TILES.SILVER_KEY;
         default:
           return TILES.GOLD_KEY;
       }
     };
-    return <ElevatedSprite frameCoord={frameCoord} />;
+    return <ElevatedSprite frameCoord={frameCoord()} />;
   }
 }

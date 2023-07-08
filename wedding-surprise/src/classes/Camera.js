@@ -39,7 +39,7 @@ export class Camera {
     let cameraDestinationY = heroY;
 
     //If moving, put the camera slightly ahead of where Hero is going
-    if (hero.movingPixelsRemaining > 0) {
+    if (hero.movingPixelRemaining > 0) {
       if (hero.movingPixelDirection === DIRECTION_DOWN) {
         cameraDestinationY += CAMERA_LOOKAHEAD * CELL_SIZE;
       } else if (hero.movingPixelDirection === DIRECTION_UP) {

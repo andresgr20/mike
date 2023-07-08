@@ -15,7 +15,16 @@ import {
   PLACEMENT_BUSH,
   PLACEMENT_LOCK,
   PLACEMENT_KEY,
+  PLACEMENT_FLOWERS,
+  PLACEMENT_WATER,
+  PLACEMENT_NPC,
+  PLACEMENT_TILE,
+  PLACEMENT_SOLID,
 } from "../helpers/consts";
+import { FlowerPlacement } from "../game-objects/FlowerPlacement";
+import { NPCPlacement } from "../game-objects/NPCPlacement";
+import { TilePlacement } from "../game-objects/TilePlacement";
+import { SolidPlacement } from "../game-objects/SolidPlacement";
 
 const placementTypeClassMap = {
   [PLACEMENT_GIFT]: GiftPlacement,
@@ -26,6 +35,10 @@ const placementTypeClassMap = {
   [PLACEMENT_BUSH]: BushPlacement,
   [PLACEMENT_KEY]: KeyPlacement,
   [PLACEMENT_LOCK]: LockPlacement,
+  [PLACEMENT_FLOWERS]: FlowerPlacement,
+  [PLACEMENT_NPC]: NPCPlacement,
+  [PLACEMENT_TILE]: TilePlacement,
+  [PLACEMENT_SOLID]: SolidPlacement,
 };
 class PlacementFactory {
   createPlacement(config, level) {

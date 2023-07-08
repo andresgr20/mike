@@ -6,7 +6,7 @@ import { TILES } from "../../helpers/tiles";
 export default function ElevatedSprite({
   frameCoord,
   size = CELL_SIZE,
-  pxAboveGround = 3,
+  pxAboveGround = 5,
 }) {
   return (
     <div className={styles.elevatedSprite}>

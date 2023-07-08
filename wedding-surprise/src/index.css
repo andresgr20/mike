@@ -45,19 +45,19 @@ canvas{
 
 @media(min-width: 900px){
   :root{
-    --pixel-size: 5;
+    --pixel-size: 1;
   }
 }
 
 @media(min-width: 1080px){
   :root{
-    --pixel-size: 6;
+    --pixel-size: 1;
   }
 }
 
 
 @media(min-width: 1260px){
   :root{
-    --pixel-size: 7;
+    --pixel-size: 1;
   }
 }

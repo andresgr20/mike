@@ -31,7 +31,6 @@ export class Level {
     this.placements = gamesData.placements.map((config) => {
       return placementFactory.createPlacement(config, this);
     });
-
     // cache the location of the player
     this.heroRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
     if (this.time) {

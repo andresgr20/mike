@@ -15,6 +15,8 @@ export class Placement {
     this.tile = properties.tile ?? null;
     this.message = properties.message ?? null;
     this.next_game_id = properties.next_game_id ?? null;
+    this.ai_movement = properties.ai_movement ?? null;
+    this.npc = properties.npc ?? null;
 
     this.travelPixelPerFrame = 1.5;
     this.movingPixelRemaining = 0;

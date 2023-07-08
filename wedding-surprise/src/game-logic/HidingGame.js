@@ -10,7 +10,6 @@ export class HidingGame extends Level {
     this.bushes = this.placements.filter((p) => p.type === PLACEMENT_BUSH);
     // location where the cat is found
     this.hideCat();
-
     this.startGameLoop();
   }
 
@@ -35,7 +34,7 @@ export class HidingGame extends Level {
     }
   }
 
-  getCatCoordinates() {
+  getTargetCoordinates() {
     return this.cat ? [this.cat.x, this.cat.y] : [9, 9];
   }
 }

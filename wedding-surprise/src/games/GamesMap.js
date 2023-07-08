@@ -1,13 +1,13 @@
 import WeddingGame from "./WeddingGame";
-import CookingGame from "./CookingGame";
+import EndingGame from "./EndingGame";
 import HidingGame from "./HidingGame";
-import ZeldaGame from "./HidingGame";
+import ZeldaGame from "./ZeldaGame";
 
 const Games = {
   WeddingGame: WeddingGame,
-  CookingGame: CookingGame,
   HidingGame: HidingGame,
   ZeldaGame: ZeldaGame,
+  EndingGame: EndingGame,
 };
 
 export default Games;

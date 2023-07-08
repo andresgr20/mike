@@ -54,7 +54,7 @@ export class PlayerPlacement extends BodyPlacement {
       return;
     }
 
-    if (this.isSolidAtNextPostion(direction)) {
+    if (this.isSolidAtNextPosition(direction)) {
       return;
     }
 
@@ -84,9 +84,11 @@ export class PlayerPlacement extends BodyPlacement {
     return collision.withLock();
   }
   handleMoveSounds() {
-    this.distance = this.getCurrentDistanceFromTarget();
-    soundManager.setVolume(this.normalizeSound());
-    soundManager.playSfx(SFX.MEOW);
+    if (this.level.theme === LEVEL_THEMES.HIDING) {
+      this.distance = this.getCurrentDistanceFromTarget();
+      soundManager.setVolume(this.normalizeSound());
+      soundManager.playSfx(SFX.MEOW);
+    }
   }
   getFrame() {
     const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;

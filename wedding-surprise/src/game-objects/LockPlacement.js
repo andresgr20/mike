@@ -1,6 +1,7 @@
 import { KEYS } from "../helpers/consts";
 import { Placement } from "./Placement";
 import Sprite from "../components/graphics/Sprite";
+import { TILES } from "../helpers/tiles";
 
 export class LockPlacement extends Placement {
   constructor(properties, level) {
@@ -23,7 +24,7 @@ export class LockPlacement extends Placement {
   }
 
   canBeUnlocked() {
-    const requiredKey = `KEY_${this.color}`;
+    const requiredKey = `${this.color}_KEY`;
     return this.level.inventory.has(requiredKey);
   }
 
@@ -39,8 +40,8 @@ export class LockPlacement extends Placement {
       switch (this.color) {
         case KEYS.BLUE:
           return TILES.BLUE_DOOR;
-        case KEYS.WOODEN:
-          return TILES.WOODEN_DOOR;
+        case KEYS.SILVER:
+          return TILES.SILVER_DOOR;
         default:
           return TILES.GOLD_DOOR;
       }
@@ -48,6 +49,8 @@ export class LockPlacement extends Placement {
     if (this.collectInFrames > 0) {
       frameCoord = TILES.UNLOCKED_DOOR;
     }
-    <Sprite frameCoord={frameCoord} />;
+
+    console.log(frameCoord());
+    return <Sprite frameCoord={frameCoord()} />;
   }
 }

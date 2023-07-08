@@ -23,7 +23,7 @@ export class BodyPlacement extends Placement {
     return collision.withInteract();
   }
 
-  isSolidAtNextPostion(direction) {
+  isSolidAtNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     const isOutOfBounds = this.level.isPositionOutOfBounds(
       collision.x,
@@ -32,7 +32,6 @@ export class BodyPlacement extends Placement {
     if (isOutOfBounds) {
       return true;
     }
-
     return Boolean(collision.withSolidPlacement());
   }
 
@@ -40,10 +39,6 @@ export class BodyPlacement extends Placement {
     this.spriteWalkFrame = this.spriteWalkFrame === 1 ? 0 : 1;
   }
 
-  tick() {
-    this.tickMovingPixelProgress();
-    this.tickMoveAi();
-  }
   tickMovingPixelProgress() {
     if (this.movingPixelRemaining === 0) {
       return;
@@ -102,11 +97,12 @@ export class BodyPlacement extends Placement {
   }
 
   getYTranslate() {
-    if (this.movingPixelsRemaining === 0) {
+    // Stand on ground when not moving
+    if (this.movingPixelRemaining === 0) {
       return 0;
     }
 
-    // ramp up height
+    //Elevate ramp up or down at beginning/end of movement
     const PIXELS_FROM_END = 2;
     if (
       this.movingPixelRemaining < PIXELS_FROM_END ||
@@ -114,6 +110,8 @@ export class BodyPlacement extends Placement {
     ) {
       return -1;
     }
+
+    // Highest in the middle of the movement
     return -2;
   }
 

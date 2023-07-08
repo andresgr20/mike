@@ -4,6 +4,8 @@ import {
   PLACEMENT_GIFT,
   PLACEMENT_WOOD,
   PLACEMENT_INTERACTIVE,
+  PLACEMENT_NPC,
+  NPCS,
 } from "../helpers/consts";
 import { TILES } from "../helpers/tiles";
 
@@ -48,7 +50,7 @@ const game = {
     { x: 4, y: 8, type: PLACEMENT_GIFT, tile: TILES.SPECIAL_GIFT },
     { x: 4, y: 8, type: PLACEMENT_INTERACTIVE, tile: TILES.LOCK },
     { x: 8, y: 5, type: PLACEMENT_INTERACTIVE, tile: TILES.WEDDING_CAKE },
-    { x: 8, y: 6, type: PLACEMENT_INTERACTIVE, tile: TILES.CAT },
+    { x: 8, y: 6, type: PLACEMENT_NPC, npc: NPCS.CAT },
   ],
 };
 
