@@ -79,6 +79,7 @@ export class BodyPlacement extends Placement {
     const collision = new Collision(this, this.level);
     const collideThatAddsToInvetory = collision.withPlacementAddsToInventory();
     const musicTiles = collision.withMusicTiles();
+    console.log(collideThatAddsToInvetory);
     if (collideThatAddsToInvetory) {
       collideThatAddsToInvetory.collect();
     }

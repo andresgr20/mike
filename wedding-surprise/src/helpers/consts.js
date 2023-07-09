@@ -15,6 +15,9 @@ export const PLACEMENT_FLOWERS = "FLOWERS";
 export const PLACEMENT_WATER = "WATER";
 export const PLACEMENT_NPC = "NPC";
 export const PLACEMENT_TILE = "TILE";
+export const PLACEMENT_FIRE = "FIRE";
+export const PLACEMENT_TORCH = "TORCH";
+export const PLACEMENT_FAIRY = "FAIRY";
 
 export const GAMEOVER_CLOCK = "CLOCK";
 export const LEVEL_THEMES = {
@@ -48,6 +51,9 @@ export const NPCS = {
   BUNNY: "BUNNY",
   NPC1: "NPC1",
   NPC2: "NPC2",
+  ORC_HAPPY: "ORC_HAPPY",
+  ORC: "ORC",
+  ORC_WEAPON: "ORC_WEAPON",
 };
 
 export const THEME_BACKGROUNDS = {
@@ -116,6 +122,27 @@ export const NPC_MAP = {
     STILL: "2x11",
   },
   [NPCS.NPC2]: {
+    RIGHT: "2x13",
+    MOVE_RIGHT: "6x13",
+    MOVE_LEFT: "4x13",
+    LEFT: "0x13",
+    STILL: "2x13",
+  },
+  [NPCS.ORC]: {
+    RIGHT: "2x13",
+    MOVE_RIGHT: "6x13",
+    MOVE_LEFT: "4x13",
+    LEFT: "0x13",
+    STILL: "2x13",
+  },
+  [NPCS.ORC_HAPPY]: {
+    RIGHT: "8x15",
+    MOVE_RIGHT: "8x15",
+    MOVE_LEFT: "10x15",
+    LEFT: "10x15",
+    STILL: "8x15",
+  },
+  [NPCS.ORC_WEAPON]: {
     RIGHT: "2x13",
     MOVE_RIGHT: "6x13",
     MOVE_LEFT: "4x13",

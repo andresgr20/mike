@@ -18,7 +18,7 @@ export class LockPlacement extends Placement {
     if (this.collectInFrames > 0) {
       this.collectInFrames -= 1;
       if (this.collectInFrames === 0) {
-        this.level.deletePlacemente(this);
+        this.level.deletePlacement(this);
       }
     }
   }
@@ -36,7 +36,7 @@ export class LockPlacement extends Placement {
   }
 
   renderComponent() {
-    const frameCoord = () => {
+    let frameCoord = () => {
       switch (this.color) {
         case KEYS.BLUE:
           return TILES.BLUE_DOOR;
@@ -46,11 +46,7 @@ export class LockPlacement extends Placement {
           return TILES.GOLD_DOOR;
       }
     };
-    if (this.collectInFrames > 0) {
-      frameCoord = TILES.UNLOCKED_DOOR;
-    }
 
-    console.log(frameCoord());
     return <Sprite frameCoord={frameCoord()} />;
   }
 }

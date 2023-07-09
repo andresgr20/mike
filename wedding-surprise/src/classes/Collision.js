@@ -23,11 +23,10 @@ export class Collision {
 
   withPlacementAddsToInventory() {
     if (this.forBody.canCollectItems) {
+      console.log("hi");
       return this.placementsAtPosition.find((p) => {
         return (
-          p.canBeCollected &&
-          !p.hasBeenCollected &&
-          p.addsItemsToInventoryOnCollide(this.forBody)
+          !p.hasBeenCollected && p.addsItemsToInventoryOnCollide(this.forBody)
         );
       });
     }

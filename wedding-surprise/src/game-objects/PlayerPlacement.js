@@ -49,6 +49,7 @@ export class PlayerPlacement extends BodyPlacement {
     // }
 
     const possibleLock = this.getLockAtNextPosition(direction);
+    console.log(this.level.inventory);
     if (possibleLock) {
       possibleLock.unlock();
       return;

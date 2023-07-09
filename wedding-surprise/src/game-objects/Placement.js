@@ -47,7 +47,7 @@ export class Placement {
     return false;
   }
 
-  addItemsToInventoryOnCollide() {
+  addsItemsToInventoryOnCollide() {
     return null;
   }
 
@@ -59,7 +59,8 @@ export class Placement {
 
   collect() {
     this.hasBeenCollected = true;
-    this.level.inventory.add(this.addsItemToInventoryOnCollide());
+    this.level.inventory.add(this.addsItemsToInventoryOnCollide());
+    console.log("hi");
   }
 
   canBeInteracted() {
