@@ -13,6 +13,7 @@ import ClockCount from "../hud/ClockCount";
 import { HidingGame } from "../../game-logic/HidingGame";
 import GameOver from "../hud/GameOver";
 import { ZeldaGame } from "../../game-logic/ZeldaGame";
+import TopHud from "../hud/TopHud";
 
 export default function RenderLevel() {
   const [level, setLevel] = useState(null);
@@ -51,12 +52,13 @@ export default function RenderLevel() {
         background: THEME_BACKGROUNDS[level.theme],
       }}
     >
-      <GameScore level={level} />
-      {level.time && <ClockCount level={level} />}
+      {/* <GameScore level={level} />
+      {level.time && <ClockCount level={level} />} */}
       <div className={styles.gameScreen}>
         <LevelBackgroundTilesLayer level={level} />
         <LevelPlacementLayer level={level} />
       </div>
+      <TopHud level={level} />
       {level.isCompleted && <GameCompleteMessage />}
       {level.gameOver && <GameOver />}
     </div>

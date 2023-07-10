@@ -23,6 +23,8 @@ import {
   PLACEMENT_FAIRY,
   PLACEMENT_TORCH,
   PLACEMENT_FIRE,
+  PLACEMENT_ENEMY,
+  PLACEMENT_BOSS,
 } from "../helpers/consts";
 import { FlowerPlacement } from "../game-objects/FlowerPlacement";
 import { NPCPlacement } from "../game-objects/NPCPlacement";
@@ -32,6 +34,8 @@ import { WaterPlacement } from "../game-objects/WaterPlacement";
 import { FairyPlacement } from "../game-objects/FairyPlacement";
 import { TorchPlacement } from "../game-objects/TorchPlacement";
 import { FirePlacement } from "../game-objects/FirePlacement";
+import { EnemyPlacement } from "../game-objects/EnemyPlacement";
+import { BossPlacement } from "../game-objects/BossPlacement";
 
 const placementTypeClassMap = {
   [PLACEMENT_GIFT]: GiftPlacement,
@@ -50,6 +54,8 @@ const placementTypeClassMap = {
   [PLACEMENT_FAIRY]: FairyPlacement,
   [PLACEMENT_TORCH]: TorchPlacement,
   [PLACEMENT_FIRE]: FirePlacement,
+  [PLACEMENT_ENEMY]: EnemyPlacement,
+  [PLACEMENT_BOSS]: BossPlacement,
 };
 class PlacementFactory {
   createPlacement(config, level) {

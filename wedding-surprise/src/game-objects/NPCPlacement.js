@@ -1,5 +1,6 @@
 import { BodyPlacement } from "./BodyPlacement";
 import {
+  BEHAVIOURS,
   DIRECTION_DOWN,
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
@@ -12,20 +13,35 @@ import Body from "../components/graphics/Body";
 export class NPCPlacement extends BodyPlacement {
   constructor(properties, level) {
     super(properties, level);
-    this.tickBetweenMovesInterval = 28;
+    this.tickBetweenMovesInterval = 38;
     this.ticksUntilNextMove = this.tickBetweenMovesInterval;
     this.small = properties.small ?? false;
-    this.enemy = false;
+    this.behaviour = properties.behaviour ?? BEHAVIOURS.HORIZONTAL;
+    this.movingPixelDirection =
+      this.behaviour === BEHAVIOURS.HORIZONTAL ? DIRECTION_LEFT : DIRECTION_UP;
   }
 
   tickMoveAi() {
-    // a switch based on the ai_movement
-    // this.checkForOverlapPlayer();
+    this.checkForOverlapPlayer();
     if (this.ticksUntilNextMove > 0) {
       this.ticksUntilNextMove -= 1;
       return;
     }
     this.internalMoveRequested(this.movingPixelDirection);
+  }
+
+  onPostMove() {
+    if (this.behaviour === BEHAVIOURS.RANDOM) {
+      const directions = [
+        DIRECTION_DOWN,
+        DIRECTION_LEFT,
+        DIRECTION_RIGHT,
+        DIRECTION_UP,
+      ];
+
+      this.movingPixelDirection =
+        directions[Math.floor(Math.random() * directions.length)];
+    }
   }
 
   internalMoveRequested(direction) {
@@ -60,15 +76,9 @@ export class NPCPlacement extends BodyPlacement {
       currentDir === DIRECTION_UP ? DIRECTION_DOWN : DIRECTION_UP;
   }
 
-  // checkForOverlapPlayer() {
-  //   const [myX, myY] = this.displayXY();
-  //   const [playerX, playerY] = this.level.heroRef.displayXY();
-  //   const xDiff = Math.abs(myX - playerX);
-  //   const yDiff = Math.abs(myY - playerY);
-  //   if (xDiff <= 2 && yDiff <= 2 && this.level.theme === LEVEL_THEMES.RUNNING) {
-  //     this.level.score += 1;
-  //   }
-  // }
+  checkForOverlapPlayer() {
+    return null;
+  }
 
   renderComponent() {
     const frameCoord =
@@ -78,7 +88,7 @@ export class NPCPlacement extends BodyPlacement {
     return (
       <Body
         frameCoord={frameCoord}
-        yTranslate={this.getYTranslate()}
+        yTranslate={0}
         showShadow={this.small ? false : true}
         size={this.small ? 16 : 32}
       />

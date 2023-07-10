@@ -18,12 +18,27 @@ export const PLACEMENT_TILE = "TILE";
 export const PLACEMENT_FIRE = "FIRE";
 export const PLACEMENT_TORCH = "TORCH";
 export const PLACEMENT_FAIRY = "FAIRY";
-
+export const PLACEMENT_ENEMY = "ENEMY";
+export const PLACEMENT_BOSS = "BOSS";
 export const GAMEOVER_CLOCK = "CLOCK";
+
 export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
   ZELDA: "ZELDA",
   HIDING: "HIDING",
+};
+
+export const ENEMY = {
+  GOBLIN_HAPPY: "GOBLIN_HAPPY",
+  GOBLIN: "GOBLIN",
+  GOBLIN_WEAPON: "GOBLIN_WEAPON",
+};
+
+export const BEHAVIOURS = {
+  RANDOM: "RANDOM",
+  HORIZONTAL: "HORIZONTAL",
+  VERTICAL: "VERTICAL",
+  IDLE: "IDLE",
 };
 
 export const KEYS = {
@@ -44,6 +59,7 @@ export const DIRECTION_DOWN = "DOWN";
 
 export const BODY_SKINS = {
   NORMAL: "NORMAL",
+  ZELDA: "ZELDA",
 };
 
 export const NPCS = {
@@ -51,9 +67,6 @@ export const NPCS = {
   BUNNY: "BUNNY",
   NPC1: "NPC1",
   NPC2: "NPC2",
-  ORC_HAPPY: "ORC_HAPPY",
-  ORC: "ORC",
-  ORC_WEAPON: "ORC_WEAPON",
 };
 
 export const THEME_BACKGROUNDS = {
@@ -105,48 +118,48 @@ export const NPC_MAP = {
     MOVE_RIGHT: "2x1",
     MOVE_LEFT: "1x0",
     LEFT: "1x1",
-    STILL: "3x1",
+    IDLE: "3x1",
   },
   [NPCS.BUNNY]: {
     RIGHT: "10x4",
     MOVE_RIGHT: "11x4",
     MOVE_LEFT: "12x4",
     LEFT: "13x4",
-    STILL: "9x4",
+    IDLE: "9x4",
   },
   [NPCS.NPC1]: {
     RIGHT: "2x11",
     MOVE_RIGHT: "6x11",
     MOVE_LEFT: "4x11",
     LEFT: "0x11",
-    STILL: "2x11",
+    IDLE: "2x11",
   },
   [NPCS.NPC2]: {
     RIGHT: "2x13",
     MOVE_RIGHT: "6x13",
     MOVE_LEFT: "4x13",
     LEFT: "0x13",
-    STILL: "2x13",
+    IDLE: "2x13",
   },
-  [NPCS.ORC]: {
-    RIGHT: "2x13",
-    MOVE_RIGHT: "6x13",
-    MOVE_LEFT: "4x13",
-    LEFT: "0x13",
-    STILL: "2x13",
+};
+
+export const ENEMY_MAP = {
+  [ENEMY.GOBLIN]: {
+    RIGHT: "8x9",
+    LEFT: "10x9",
+    IDLE: "8x9",
+    DEATH: "",
   },
-  [NPCS.ORC_HAPPY]: {
+  [ENEMY.GOBLIN_HAPPY]: {
     RIGHT: "8x15",
-    MOVE_RIGHT: "8x15",
-    MOVE_LEFT: "10x15",
     LEFT: "10x15",
-    STILL: "8x15",
+    IDLE: "8x15",
+    DEATH: "",
   },
-  [NPCS.ORC_WEAPON]: {
-    RIGHT: "2x13",
-    MOVE_RIGHT: "6x13",
-    MOVE_LEFT: "4x13",
-    LEFT: "0x13",
-    STILL: "2x13",
+  [ENEMY.GOBLIN_WEAPON]: {
+    RIGHT: "8x11",
+    LEFT: "10x11",
+    IDLE: "8x11",
+    DEATH: "",
   },
 };

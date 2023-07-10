@@ -18,6 +18,8 @@ export class BodyPlacement extends Placement {
     });
   }
 
+  getAttackAtNextPosition(direction) {}
+
   getInteractionsAttNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withInteract();

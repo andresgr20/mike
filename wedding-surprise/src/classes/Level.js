@@ -5,6 +5,7 @@ import { placementFactory } from "./PlacementFactory";
 import GamesMap from "../games/GamesMap";
 import { Clock } from "./Clock";
 import { LevelAnimatedFrames } from "./LevelAnimatedFrames";
+import { Inventory } from "./Inventory";
 
 export class Level {
   constructor(levelId, onEmit) {
@@ -36,6 +37,7 @@ export class Level {
     if (this.time) {
       this.clock = new Clock(gamesData.time, this);
     }
+    this.inventory = new Inventory();
     this.start();
   }
   start() {}

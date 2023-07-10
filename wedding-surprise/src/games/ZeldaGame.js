@@ -18,6 +18,9 @@ import {
   PLACEMENT_FAIRY,
   PLACEMENT_WATER,
   PLACEMENT_TORCH,
+  ENEMY,
+  PLACEMENT_ENEMY,
+  BEHAVIOURS,
 } from "../helpers/consts";
 import { TILES } from "../helpers/tiles";
 
@@ -208,6 +211,19 @@ const placements = [
     type: PLACEMENT_KEY,
     color: KEYS.SILVER,
   },
+  {
+    x: 12,
+    y: 1,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN,
+  },
+  {
+    x: 20,
+    y: 3,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN,
+    behaviour: BEHAVIOURS.VERTICAL,
+  },
   // Goblin village
   {
     x: 5,
@@ -286,11 +302,6 @@ const placements = [
     type: PLACEMENT_WATER,
   },
   {
-    x: 5,
-    y: 2,
-    type: PLACEMENT_WATER,
-  },
-  {
     x: 6,
     y: 2,
     type: PLACEMENT_WATER,
@@ -314,20 +325,35 @@ const placements = [
   {
     x: 2,
     y: 5,
-    type: PLACEMENT_NPC,
-    npc: NPCS.ORC_HAPPY,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN_HAPPY,
+    behaviour: BEHAVIOURS.HORIZONTAL,
   },
   {
-    x: 7,
+    x: 8,
     y: 5,
-    type: PLACEMENT_NPC,
-    npc: NPCS.ORC_HAPPY,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN_HAPPY,
+    behaviour: BEHAVIOURS.VERTICAL,
+  },
+  {
+    x: 10,
+    y: 3,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN_HAPPY,
+    behaviour: BEHAVIOURS.VERTICAL,
+  },
+  {
+    x: 9,
+    y: 5,
+    type: PLACEMENT_SOLID,
+    tile: TILES.ROCK,
   },
   {
     x: 7,
     y: 7,
-    type: PLACEMENT_NPC,
-    npc: NPCS.ORC_HAPPY,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN_HAPPY,
   },
   {
     x: 5,
@@ -342,80 +368,94 @@ const placements = [
     tile: TILES.SIGN_BEWARE,
   },
   // Battlefield
-
-  // Prison
-  // {
-  //   x: 23,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 24,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 25,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 26,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 27,
-  //   y: 4,
-  //   type: PLACEMENT_LOCK,
-  //   color: KEYS.GOLDEN,
-  // },
-  // {
-  //   x: 28,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 29,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 30,
-  //   y: 4,
-  //   type: PLACEMENT_SOLID,
-  //   tile: TILES.PRISON,
-  // },
-  // {
-  //   x: 28,
-  //   y: 1,
-  //   type: PLACEMENT_TILE,
-  //   tile: TILES.DIRT_FLOOR,
-  // },
-  // {
-  //   x: 28,
-  //   y: 2,
-  //   type: PLACEMENT_TILE,
-  //   tile: TILES.DIRT_FLOOR,
-  // },
-  // {
-  //   x: 29,
-  //   y: 1,
-  //   type: PLACEMENT_TILE,
-  //   tile: TILES.DIRT_FLOOR,
-  // },
-  // {
-  //   x: 29,
-  //   y: 2,
-  //   type: PLACEMENT_TILE,
-  //   tile: TILES.DIRT_FLOOR,
-  // },
+  {
+    x: 24,
+    y: 18,
+    type: PLACEMENT_SOLID,
+    tile: TILES.SIGN_BEWARE,
+  },
+  {
+    x: 24,
+    y: 16,
+    type: PLACEMENT_SOLID,
+    tile: TILES.SIGN_BEWARE,
+  },
+  {
+    x: 24,
+    y: 15,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 24,
+    y: 14,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 25,
+    y: 14,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 25,
+    y: 15,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 26,
+    y: 15,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 26,
+    y: 14,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 29,
+    y: 15,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 29,
+    y: 14,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 30,
+    y: 15,
+    type: PLACEMENT_WATER,
+  },
+  {
+    x: 30,
+    y: 14,
+    type: PLACEMENT_WATER,
+  },
+  { x: 26, y: 13, type: PLACEMENT_TORCH },
+  { x: 29, y: 13, type: PLACEMENT_TORCH },
+  { x: 28, y: 14, type: PLACEMENT_TILE, tile: TILES.WOOD_BRIDGE_2 },
+  { x: 27, y: 14, type: PLACEMENT_TILE, tile: TILES.WOOD_BRIDGE_2 },
+  { x: 27, y: 15, type: PLACEMENT_TILE, tile: TILES.WOOD_BRIDGE_2 },
+  { x: 28, y: 15, type: PLACEMENT_TILE, tile: TILES.WOOD_BRIDGE_2 },
+  {
+    x: 29,
+    y: 21,
+    type: PLACEMENT_TILE,
+    tile: TILES.GROUND_SPACE_CENTER_BORDER,
+  },
+  { x: 30, y: 21, type: PLACEMENT_TILE, tile: TILES.GROUND_SPACE_RIGHT_BORDER },
+  { x: 30, y: 20, type: PLACEMENT_TILE, tile: TILES.GROUND_SPACE_RIGHT_TOP },
+  { x: 29, y: 20, type: PLACEMENT_TILE, tile: TILES.GROUND_SPACE_CENTER_TOP },
+  { x: 28, y: 21, type: PLACEMENT_TILE, tile: TILES.GROUND_SPACE_LEFT_BORDER },
+  { x: 28, y: 20, type: PLACEMENT_TILE, tile: TILES.GROUND_SPACE_LEFT_TOP },
+  { x: 29, y: 21, type: PLACEMENT_FIRE },
+  {
+    x: 26,
+    y: 16,
+    type: PLACEMENT_ENEMY,
+    enemy: ENEMY.GOBLIN_WEAPON,
+    behaviour: BEHAVIOURS.VERTICAL,
+  },
+  { x: 30, y: 16, type: PLACEMENT_ENEMY, enemy: ENEMY.GOBLIN_WEAPON },
 ];
 const createWalls = (total, wallType, startX, startY, skip = undefined) => {
   let tile;
@@ -487,6 +527,7 @@ const createPrison = () => {
   // Prison cell
   // NPC
 };
+
 createWalls(10, "TOP", 1, 10, 5);
 createWalls(10, "RIGHT", 12, 11, 6);
 createWalls(9, "TOP", 13, 13, 4);

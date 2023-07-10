@@ -1,7 +1,12 @@
+import styles from "./ClockCount.module.css";
+import Sprite from "../graphics/Sprite";
+import { TILES } from "../../helpers/tiles";
+import PixelNumber from "./PixelNumbers";
 export default function ClockCount({ level }) {
   return (
-    <p style={{ position: "absolute", left: 120, top: 0, color: "#fff" }}>
-      Seconds Remaining: {level.secondsRemaining}
-    </p>
+    <div className={styles.clockCount}>
+      <Sprite frameCoord={TILES.CLOCK} />
+      <PixelNumber number={level.secondsRemaining} />
+    </div>
   );
 }
