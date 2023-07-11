@@ -1,15 +1,18 @@
-import { useEffect } from "react";
-import { SPRITE_SHEET_SRC } from "./helpers/consts";
+import { useEffect, useState } from "react";
+import { PLAYERS, SPRITE_SHEET_SRC } from "./helpers/consts";
 import RenderLevel from "./components/level-layout/RenderLevel";
 import { useRecoilState } from "recoil";
 import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
 import soundManager from "./classes/Sounds";
+import "./startScreen.css";
 
 soundManager.init();
 
 function App() {
   const [spriteSheetImage, setSpriteSheetImage] =
     useRecoilState(spriteSheetImageAtom);
+  const [player, setPlayer] = useState(null);
+  const [playerSelected, setPlayerSelected] = useState(false);
   useEffect(() => {
     const image = new Image();
     image.src = SPRITE_SHEET_SRC;
@@ -17,12 +20,37 @@ function App() {
       setSpriteSheetImage(image);
     };
   }, [spriteSheetImage]);
-  if (!spriteSheetImage) {
+  if (!spriteSheetImage && !playerSelected) {
     return null;
   }
+  const handleCharacterAlyssa = () => {
+    setPlayer(PLAYERS.ALYSSA);
+    setPlayerSelected(true);
+  };
+
+  const handleCharacterMike = () => {
+    setPlayer(PLAYERS.MIKE);
+    setPlayerSelected(true);
+  };
+
   return (
     <div>
-      <RenderLevel />
+      {!playerSelected && (
+        <div className="container">
+          <div className="centered">
+            <div className="bigText">Welcome to your wedding gift!</div>
+            <p>Select a character</p>
+            <div className="buttonContainer">
+              <button onClick={handleCharacterMike}>Mike</button>
+              <button onClick={handleCharacterAlyssa}>Alyssa</button>
+            </div>
+            <p>
+              Play until the end and you get a reward :) Done by yours truly
+            </p>
+          </div>
+        </div>
+      )}
+      {playerSelected && <RenderLevel player={player} />}
     </div>
   );
 }

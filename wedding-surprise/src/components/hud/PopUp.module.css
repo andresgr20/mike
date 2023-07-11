@@ -9,6 +9,8 @@
 
 .popupContainer {
     position: relative;
+    border: black;
+    background-color: burlywood;
 }
 
 .quietButton {

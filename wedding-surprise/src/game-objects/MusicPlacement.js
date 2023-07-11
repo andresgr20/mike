@@ -11,14 +11,14 @@ export class MusicPlacement extends Placement {
 
   tick() {
     if (this.frame < 4) {
-      this.frame += 0.1;
+      this.frame += 0.05;
       return;
     }
     this.level.deletePlacement(this);
   }
 
   zIndex() {
-    return this.y * Z_INDEX_LAYER_SIZE + 2;
+    return this.y * Z_INDEX_LAYER_SIZE + 3;
   }
 
   renderComponent() {

@@ -13,12 +13,12 @@ import { Inventory } from "./Inventory";
 import { Camera } from "./Camera";
 
 export class Level {
-  constructor(levelId, onEmit) {
+  constructor(levelId, onEmit, player) {
     this.id = levelId;
     this.onEmit = onEmit;
 
     this.directionControls = new DirectionControls();
-
+    this.player = player;
     // starts the level
     this.start();
   }

@@ -1,23 +1,13 @@
 import {
   DIRECTION_LEFT,
-  DIRECTION_RIGHT,
-  PLAYER_1_RUN_1,
-  PLAYER_1_RUN_2,
-  BODY_SKINS,
   Z_INDEX_LAYER_SIZE,
   LEVEL_THEMES,
+  playerSkinMapNew,
 } from "../helpers/consts";
-import { TILES } from "../helpers/tiles";
 import { BodyPlacement } from "./BodyPlacement";
 import Body from "../components/graphics/Body";
 import soundManager, { SFX } from "../classes/Sounds";
-import { HeartPlacement } from "./HeartPlacement";
 
-const playerSkinMap = {
-  [BODY_SKINS.NORMAL]: [TILES.PLAYER_1_LEFT, TILES.PLAYER_1_RIGHT],
-  [PLAYER_1_RUN_1]: [TILES.PLAYER_1_RUN_1_LEFT, TILES.PLAYER_1_RUN_1_RIGHT],
-  [PLAYER_1_RUN_2]: [TILES.PLAYER_1_RUN_2_LEFT, TILES.PLAYER_1_RUN_2_RIGHT],
-};
 export class PlayerPlacement extends BodyPlacement {
   constructor(properties, level) {
     super(properties, level);
@@ -121,11 +111,15 @@ export class PlayerPlacement extends BodyPlacement {
     const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;
 
     if (this.movingPixelRemaining > 0) {
-      const walkKey =
-        this.spriteWalkFrame === 0 ? PLAYER_1_RUN_1 : PLAYER_1_RUN_2;
-      return playerSkinMap[walkKey][index];
+      const walkKey = this.spriteWalkFrame === 0 ? "RUN_1" : "RUN_2";
+      return playerSkinMapNew[this.level.player][this.level.theme][walkKey][
+        index
+      ];
     }
-    return playerSkinMap[BODY_SKINS.NORMAL][index];
+
+    return playerSkinMapNew[this.level.player][this.level.theme]["NORMAL"][
+      index
+    ];
   }
 
   normalizeSound() {

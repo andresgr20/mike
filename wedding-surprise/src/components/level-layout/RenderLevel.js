@@ -11,19 +11,21 @@ import GameOver from "../hud/GameOver";
 import TopHud from "../hud/TopHud";
 import { currentMainInventoryAtom } from "../../atoms/currentMainInventoryAtom";
 import { Level } from "../../classes/Level";
-import { currentPlayerIdAtom } from "../../atoms/currentPlayerIdAtom";
 import NextLevelMessage from "../hud/NextLevelMessage";
-export default function RenderLevel() {
+export default function RenderLevel({ player }) {
   const [level, setLevel] = useState(null);
   // would need to use an atom to save the values when going back to the other games
   const currentLevelId = useRecoilValue(currentLevelIdAtom);
   const currentMainInventory = useRecoilValue(currentMainInventoryAtom);
-  const player = useRecoilValue(currentPlayerIdAtom);
 
   useEffect(() => {
-    const levelState = new Level(currentLevelId, (newState) => {
-      setLevel(newState);
-    });
+    const levelState = new Level(
+      currentLevelId,
+      (newState) => {
+        setLevel(newState);
+      },
+      player
+    );
 
     // get initial state
     setLevel(levelState.getState());

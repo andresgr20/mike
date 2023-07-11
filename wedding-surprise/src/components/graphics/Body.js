@@ -11,14 +11,21 @@ export default function Body({
   return (
     <div className={styles.player}>
       <div>{showShadow && <Sprite frameCoord={TILES.SHADOW} />}</div>
-      <div
-        className={styles.playerBody}
-        style={{
-          transform: `translateY(${yTranslate}px)`,
-        }}
-      >
-        <Sprite frameCoord={frameCoord} size={size} />
-      </div>
+      {size === 32 ? (
+        <div
+          className={styles.playerBody}
+          style={{
+            transform: `translateY(${yTranslate}px)`,
+          }}
+        >
+          <Sprite frameCoord={frameCoord} size={size} />
+        </div>
+      ) : (
+        <div>
+          {" "}
+          <Sprite frameCoord={frameCoord} size={size} />
+        </div>
+      )}
     </div>
   );
 }

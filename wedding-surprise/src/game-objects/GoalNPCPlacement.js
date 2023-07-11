@@ -1,6 +1,11 @@
 import Body from "../components/graphics/Body";
-import { DIRECTION_LEFT, NPCS, NPC_MAP } from "../helpers/consts";
-import { HeartPlacement } from "./HeartPlacement";
+import {
+  DIRECTION_LEFT,
+  NPCS,
+  NPC_MAP,
+  PLAYERS,
+  playerSkinMapNew,
+} from "../helpers/consts";
 import { NPCPlacement } from "./NPCPlacement";
 
 export class GoalNPCPlacement extends NPCPlacement {
@@ -15,10 +20,12 @@ export class GoalNPCPlacement extends NPCPlacement {
   }
 
   renderComponent() {
+    const key =
+      PLAYERS.ALYSSA === this.level.player ? PLAYERS.MIKE : PLAYERS.ALYSSA;
     const frameCoord =
       this.spriteFacingDirection === DIRECTION_LEFT
-        ? NPC_MAP[NPCS.PRISONER].LEFT
-        : NPC_MAP[NPCS.PRISONER].RIGHT;
+        ? playerSkinMapNew[key][this.level.theme]["GOAL"][0]
+        : playerSkinMapNew[key][this.level.theme]["GOAL"][1];
     return (
       <div>
         <Body frameCoord={frameCoord} yTranslate={0} showShadow />
