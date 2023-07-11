@@ -1,33 +1,27 @@
-import { LEVEL_THEMES } from "../helpers/consts";
-
 export class Inventory {
   constructor() {
     this.inventoryMap = new Map();
-    Object.keys(LEVEL_THEMES).forEach((element) => {
-      this.inventoryMap.set(element, new Map());
-    });
-    console.log(this.inventoryMap);
   }
 
-  has(key, level) {
-    return Boolean(this.inventoryMap.get(level).has(key));
+  has(key) {
+    return Boolean(this.inventoryMap.has(key));
   }
 
-  add(key, level) {
+  add(key) {
     if (!key) {
       return;
     }
-    this.inventoryMap.get(level).set(key, true);
+    this.inventoryMap.set(key, true);
   }
 
-  delete(key, level) {
+  delete(key) {
     if (!key) {
       return;
     }
-    this.inventoryMap.get(level).delete(key);
+    this.inventoryMap.delete(key);
   }
 
-  clear(level) {
-    this.inventoryMap.get(level).clear();
+  clear() {
+    this.inventoryMap.clear();
   }
 }

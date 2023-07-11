@@ -1,8 +1,12 @@
+import styles from "./ClockCount.module.css";
+import Sprite from "../graphics/Sprite";
+import { TILES } from "../../helpers/tiles";
+import PixelNumber from "./PixelNumbers";
 export default function GameScore({ level }) {
-  const score = level.score;
   return (
-    <p style={{ position: "absolute", left: 0, top: 0, color: "#fff" }}>
-      Cats Found: {score}
-    </p>
+    <div className={styles.clockCount}>
+      <Sprite frameCoord={TILES.CAT_ICON} />
+      <PixelNumber number={level.score} />
+    </div>
   );
 }

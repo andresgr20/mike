@@ -49,6 +49,11 @@ export class PlayerPlacement extends BodyPlacement {
       this.animationStart = true;
     }
 
+    const nextLevel = this.getNextLevelAtNextPosition(direction);
+    if (nextLevel) {
+      nextLevel.changeLevel();
+      this.level.changeLevel();
+    }
     const possibleLock = this.getLockAtNextPosition(direction);
     if (possibleLock) {
       possibleLock.unlock();
@@ -76,7 +81,6 @@ export class PlayerPlacement extends BodyPlacement {
     this.tickCount += 16.6;
     if (this.tickCount >= 16.6 * this.endTickAnimation) {
       this.level.setCompleteLevel();
-      this.level.inventory.add("SWORD", "WEDDING");
     }
   }
 
@@ -87,13 +91,18 @@ export class PlayerPlacement extends BodyPlacement {
 
   // using pytagorean to find the closest one and play the sounds
   getCurrentDistanceFromTarget() {
-    const [catX, catY] = this.level.getCatCoordinates();
+    const [catX, catY] = this.level.getTargetCoordinates();
     return Math.sqrt((this.x - catX) ** 2 + (this.y - catY) ** 2);
   }
 
   getLockAtNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withLock();
+  }
+
+  getNextLevelAtNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    return collision.withNextLevel();
   }
 
   getCompletesNextPosition(direction) {

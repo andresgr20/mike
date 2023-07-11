@@ -37,6 +37,13 @@ export class Collision {
       return p.completesLevelOnCollide();
     });
   }
+
+  withNextLevel() {
+    return this.placementsAtPosition.find((p) => {
+      return p.nextLevelOnCollide();
+    });
+  }
+
   withInteract() {
     return this.placementsAtPosition.find((p) => {
       return p.canBeInteracted();

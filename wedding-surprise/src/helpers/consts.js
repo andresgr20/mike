@@ -28,6 +28,7 @@ export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
   ZELDA: "ZELDA",
   HIDING: "HIDING",
+  ENDING: "ENDING",
 };
 
 export const ENEMY = {
@@ -48,10 +49,11 @@ export const KEYS = {
   SILVER: "SILVER",
   BLUE: "BLUE",
 };
-export const MESSAGE_TYPES = {
-  NEXT_GAME: "NEXT GAME",
-  TEXT: "TEXT",
-  GO_BACK: "GO BACK",
+
+export const GIFTS = {
+  YELLOW_GIFT: "YELLOW_GIFT",
+  SPECIAL_GIFT: "SPECIAL_GIFT",
+  RED_GIFT: "RED_GIFT",
 };
 
 export const DIRECTION_LEFT = "LEFT";

@@ -59,12 +59,12 @@ export class Placement {
 
   collect() {
     this.hasBeenCollected = true;
-    this.level.inventory.add(
-      this.addsItemsToInventoryOnCollide(),
-      this.level.theme
-    );
+    this.level.inventory.add(this.addsItemsToInventoryOnCollide());
   }
 
+  nextLevelOnCollide() {
+    return false;
+  }
   canBeInteracted() {
     return false;
   }

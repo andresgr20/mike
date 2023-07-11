@@ -25,12 +25,12 @@ export class LockPlacement extends Placement {
 
   canBeUnlocked() {
     const requiredKey = `${this.color}_KEY`;
-    return this.level.inventory.has(requiredKey, this.level.theme);
+    return this.level.inventory.has(requiredKey);
   }
 
   unlock() {
     const requiredKey = `${this.color}_KEY`;
-    this.level.inventory.delete(requiredKey, this.level.theme);
+    this.level.inventory.delete(requiredKey);
     if (this.collectInFrames > 0) {
       return;
     }

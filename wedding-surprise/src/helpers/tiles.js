@@ -4,10 +4,10 @@ export const TILES = {
   YELLOW_GIFT: "1x0",
   RED_GIFT: "2x0",
   SPECIAL_GIFT: "3x0",
-  MUSIC_NOTE_1: "5x1",
-  MUSIC_NOTE_2: "6x1",
-  MUSIC_NOTE_3: "7x1",
-  MUSIC_NOTE_4: "8x1",
+  MUSIC_NOTE_1: "6x1",
+  MUSIC_NOTE_2: "7x1",
+  MUSIC_NOTE_3: "8x1",
+  MUSIC_NOTE_4: "9x1",
 
   // SPECIAL FLOOR
   WOODEN_FLOOR: "0x2",
@@ -22,7 +22,7 @@ export const TILES = {
   CAT_MOVE_RIGHT: "1x2",
   CAT_MOVE_LEFT: "13x1",
   CAT_LEFT: "13x2",
-  CAT_ICON: "1x3",
+  CAT_ICON: "4x1",
   PLAYER_1_LEFT: "0x7",
   PLAYER_1_RUN_1_LEFT: "4x7",
   PLAYER_1_RUN_1_RIGHT: "6x7",

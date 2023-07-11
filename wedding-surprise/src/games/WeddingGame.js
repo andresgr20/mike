@@ -6,13 +6,16 @@ import {
   PLACEMENT_INTERACTIVE,
   PLACEMENT_NPC,
   NPCS,
+  BEHAVIOURS,
+  PLACEMENT_SOLID,
+  GIFTS,
 } from "../helpers/consts";
 import { TILES } from "../helpers/tiles";
 
 const game = {
   theme: LEVEL_THEMES.WEDDING,
-  tilesWidth: 8,
-  tilesHeight: 8,
+  tilesWidth: 9,
+  tilesHeight: 9,
   placements: [
     // { x: 6, y: 4, type: PLACEMENT_WOOD },
     // { x: 7, y: 4, type: PLACEMENT_WOOD },
@@ -44,13 +47,28 @@ const game = {
     { x: 6, y: 5, type: PLACEMENT_WOOD },
     { x: 6, y: 6, type: PLACEMENT_WOOD },
     { x: 2, y: 2, type: PLACEMENT_PLAYER },
-    { x: 2, y: 8, type: PLACEMENT_GIFT, tile: TILES.RED_GIFT },
-    { x: 6, y: 8, type: PLACEMENT_GIFT, tile: TILES.YELLOW_GIFT },
-    { x: 8, y: 8, type: PLACEMENT_GIFT, tile: TILES.YELLOW_GIFT }, //make a new colour
-    { x: 4, y: 8, type: PLACEMENT_GIFT, tile: TILES.SPECIAL_GIFT },
-    { x: 4, y: 8, type: PLACEMENT_INTERACTIVE, tile: TILES.LOCK },
-    { x: 8, y: 5, type: PLACEMENT_INTERACTIVE, tile: TILES.WEDDING_CAKE },
-    { x: 8, y: 6, type: PLACEMENT_NPC, npc: NPCS.CAT },
+    {
+      x: 2,
+      y: 8,
+      type: PLACEMENT_GIFT,
+      gift: GIFTS.RED_GIFT,
+    },
+    {
+      x: 7,
+      y: 8,
+      type: PLACEMENT_GIFT,
+      gift: GIFTS.YELLOW_GIFT,
+    },
+    { x: 4, y: 8, type: PLACEMENT_GIFT, gift: GIFTS.SPECIAL_GIFT },
+    { x: 8, y: 5, type: PLACEMENT_SOLID, tile: TILES.WEDDING_CAKE },
+    {
+      x: 8,
+      y: 6,
+      type: PLACEMENT_NPC,
+      npc: NPCS.CAT,
+      behaviour: BEHAVIOURS.RANDOM,
+      small: true,
+    },
   ],
 };
 

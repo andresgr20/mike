@@ -15,6 +15,7 @@ export class Clock {
       this.secondsRemaining -= 1;
 
       if (this.secondsRemaining <= 0) {
+        this.level.gameOverReason = "Ran out of time!";
         this.level.setGameOver();
         return;
       }

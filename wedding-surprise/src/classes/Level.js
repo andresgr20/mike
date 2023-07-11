@@ -1,4 +1,8 @@
-import { PLACEMENT_PLAYER } from "../helpers/consts";
+import {
+  LEVEL_THEMES,
+  PLACEMENT_BUSH,
+  PLACEMENT_PLAYER,
+} from "../helpers/consts";
 import { DirectionControls } from "./DirectionControls";
 import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
@@ -16,13 +20,16 @@ export class Level {
     this.directionControls = new DirectionControls();
 
     // starts the level
-    this.setUp();
+    this.start();
   }
 
-  setUp() {
+  start() {
     this.isCompleted = false;
     this.gameOver = false;
-    this.deathOutcome = null;
+    this.nextLevelId = null;
+    this.nextLevelDescription = null;
+    this.nextLevelName = null;
+    this.gameOverReason = null;
     const gamesData = GamesMap[this.id];
     this.theme = gamesData.theme;
     this.tilesWidth = gamesData.tilesWidth;
@@ -32,7 +39,7 @@ export class Level {
     this.placements = gamesData.placements.map((config) => {
       return placementFactory.createPlacement(config, this);
     });
-
+    this.winningScore = gamesData.winningScore ?? null;
     this.inventory = new Inventory();
     this.animatedFrames = new LevelAnimatedFrames();
 
@@ -43,13 +50,20 @@ export class Level {
     }
 
     this.camera = new Camera(this);
-    console.log(this.camera);
-    this.startGameLoop();
+
+    if (LEVEL_THEMES.HIDING === this.theme) {
+      this.startHidingGame();
+    } else {
+      this.startGameLoop();
+    }
   }
-  start() {}
+
+  changeLevel() {
+    this.gameLoop.stop();
+  }
 
   restart() {
-    this.setUp();
+    this.start();
   }
 
   startGameLoop() {
@@ -70,7 +84,7 @@ export class Level {
 
     this.animatedFrames.tick();
     // this.camera.tick();
-    this.clock.tick();
+    this.clock?.tick();
 
     this.onEmit(this.getState());
   }
@@ -91,20 +105,27 @@ export class Level {
       tilesHeight: this.tilesHeight,
       placements: this.placements,
       isCompleted: this.isCompleted,
-      deathOutcome: this.deathOutcome,
+      gameOverReason: this.gameOverReason,
       score: this.score,
       gameOver: this.gameOver,
       winningScore: this.winningScore,
-      secondsRemaining: this.clock.secondsRemaining,
+      secondsRemaining: this.secondsRemaining(),
       time: this.time,
       cameraTransformX: this.camera.transformX,
       cameraTransformY: this.camera.transformY,
       inventory: this.inventory,
+      nextLevelId: this.nextLevelId,
+      nextLevelName: this.nextLevelName,
+      nextLevelDescription: this.nextLevelDescription,
     };
   }
 
   addPlacement(config) {
     this.placements.push(placementFactory.createPlacement(config, this));
+  }
+
+  secondsRemaining() {
+    return this.time ? this.clock.secondsRemaining : null;
   }
 
   setGameOver() {
@@ -130,5 +151,43 @@ export class Level {
   destroy() {
     this.gameLoop.stop();
     this.directionControls.unbind();
+  }
+
+  hideCat(prevPlacement = null) {
+    this.cat = this.bushes[Math.floor(Math.random() * this.bushes.length)];
+    if (prevPlacement) {
+      while (prevPlacement.x === this.cat.x && this.cat.y === prevPlacement.y) {
+        this.cat = this.bushes[Math.floor(Math.random() * this.bushes.length)];
+      }
+      prevPlacement.setCatHiddenHere();
+    }
+    this.cat.setCatHiddenHere();
+  }
+
+  catFound() {
+    this.score += 1;
+    if (this.score < this.winningScore) {
+      this.hideCat(this.cat);
+    } else {
+      this.setCompleteLevel();
+    }
+  }
+
+  startHidingGame() {
+    this.bushes = this.placements.filter((p) => p.type === PLACEMENT_BUSH);
+    // location where the cat is found
+    this.hideCat();
+    this.startGameLoop();
+  }
+  getTargetCoordinates() {
+    return this.cat ? [this.cat.x, this.cat.y] : [9, 9];
+  }
+
+  setInventory(items) {
+    items.forEach((item) => {
+      if (!this.inventory.has(item)) {
+        this.inventory.add(item);
+      }
+    });
   }
 }

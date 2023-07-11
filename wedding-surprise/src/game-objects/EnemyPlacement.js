@@ -14,6 +14,7 @@ export class EnemyPlacement extends NPCPlacement {
     const xDiff = Math.abs(myX - playerX);
     const yDiff = Math.abs(myY - playerY);
     if (xDiff <= 2 && yDiff <= 2) {
+      this.level.gameOverReason = "Killed by the enemy";
       this.level.setGameover();
     }
   }
