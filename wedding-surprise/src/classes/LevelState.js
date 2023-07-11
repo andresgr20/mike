@@ -31,7 +31,7 @@ export class LevelState {
     });
 
     // cache the location of the player
-    this.heroRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
+    this.playerRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
 
     if (this.time) {
       this.clock = new Clock(gamesData.time, this);
@@ -53,7 +53,7 @@ export class LevelState {
 
   tick() {
     if (this.directionControls.direction) {
-      this.heroRef.controllerMoveRequested(this.directionControls.direction);
+      this.playerRef.controllerMoveRequested(this.directionControls.direction);
     }
 
     this.placements.forEach((placement) => {

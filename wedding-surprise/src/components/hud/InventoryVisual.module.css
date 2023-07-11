@@ -1,4 +1,8 @@
-.inventoryVisual {
+.inventory {
     display: flex;
-    align-items: center;
+}
+
+.inventoryEntry {
+    display: flex;
+    gap: 1px;
 }

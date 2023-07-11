@@ -6,6 +6,7 @@ import GamesMap from "../games/GamesMap";
 import { Clock } from "./Clock";
 import { LevelAnimatedFrames } from "./LevelAnimatedFrames";
 import { Inventory } from "./Inventory";
+import { Camera } from "./Camera";
 
 export class Level {
   constructor(levelId, onEmit) {
@@ -14,8 +15,6 @@ export class Level {
 
     this.directionControls = new DirectionControls();
 
-    this.animatedFrames = new LevelAnimatedFrames();
-
     // starts the level
     this.setUp();
   }
@@ -23,6 +22,7 @@ export class Level {
   setUp() {
     this.isCompleted = false;
     this.gameOver = false;
+    this.deathOutcome = null;
     const gamesData = GamesMap[this.id];
     this.theme = gamesData.theme;
     this.tilesWidth = gamesData.tilesWidth;
@@ -32,13 +32,19 @@ export class Level {
     this.placements = gamesData.placements.map((config) => {
       return placementFactory.createPlacement(config, this);
     });
+
+    this.inventory = new Inventory();
+    this.animatedFrames = new LevelAnimatedFrames();
+
     // cache the location of the player
-    this.heroRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
+    this.playerRef = this.placements.find((p) => p.type === PLACEMENT_PLAYER);
     if (this.time) {
       this.clock = new Clock(gamesData.time, this);
     }
-    this.inventory = new Inventory();
-    this.start();
+
+    this.camera = new Camera(this);
+    console.log(this.camera);
+    this.startGameLoop();
   }
   start() {}
 
@@ -55,7 +61,7 @@ export class Level {
 
   tick() {
     if (this.directionControls.direction) {
-      this.heroRef.controllerMoveRequested(this.directionControls.direction);
+      this.playerRef.controllerMoveRequested(this.directionControls.direction);
     }
 
     this.placements.forEach((placement) => {
@@ -63,6 +69,7 @@ export class Level {
     });
 
     this.animatedFrames.tick();
+    // this.camera.tick();
     this.clock.tick();
 
     this.onEmit(this.getState());
@@ -84,11 +91,15 @@ export class Level {
       tilesHeight: this.tilesHeight,
       placements: this.placements,
       isCompleted: this.isCompleted,
+      deathOutcome: this.deathOutcome,
       score: this.score,
       gameOver: this.gameOver,
       winningScore: this.winningScore,
       secondsRemaining: this.clock.secondsRemaining,
       time: this.time,
+      cameraTransformX: this.camera.transformX,
+      cameraTransformY: this.camera.transformY,
+      inventory: this.inventory,
     };
   }
 

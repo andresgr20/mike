@@ -5,6 +5,7 @@ import {
   Z_INDEX_LAYER_SIZE,
   directionUpdateMap,
   PLACEMENT_MUSIC,
+  PLACEMENT_HEART,
 } from "../helpers/consts";
 import { Collision } from "../classes/Collision";
 export class BodyPlacement extends Placement {
@@ -81,13 +82,21 @@ export class BodyPlacement extends Placement {
     const collision = new Collision(this, this.level);
     const collideThatAddsToInvetory = collision.withPlacementAddsToInventory();
     const musicTiles = collision.withMusicTiles();
-    console.log(collideThatAddsToInvetory);
     if (collideThatAddsToInvetory) {
       collideThatAddsToInvetory.collect();
     }
     if (musicTiles) {
       this.level.addPlacement({
         type: PLACEMENT_MUSIC,
+        x: this.x,
+        y: this.y,
+      });
+    }
+
+    const completesLevel = collision.withCompletesLevel();
+    if (completesLevel) {
+      this.level.addPlacement({
+        type: PLACEMENT_HEART,
         x: this.x,
         y: this.y,
       });

@@ -11,6 +11,7 @@ import { TILES } from "../helpers/tiles";
 import { BodyPlacement } from "./BodyPlacement";
 import Body from "../components/graphics/Body";
 import soundManager, { SFX } from "../classes/Sounds";
+import { HeartPlacement } from "./HeartPlacement";
 
 const playerSkinMap = {
   [BODY_SKINS.NORMAL]: [TILES.PLAYER_1_LEFT, TILES.PLAYER_1_RIGHT],
@@ -21,6 +22,9 @@ export class PlayerPlacement extends BodyPlacement {
   constructor(properties, level) {
     super(properties, level);
     this.canCollectItems = true;
+    this.tickCount = 0;
+    this.animationStart = false;
+    this.endTickAnimation = 4;
     if (level.theme === LEVEL_THEMES.HIDING) {
       this.distance = this.getCurrentDistanceFromTarget();
       this.maxDistance = Math.sqrt(
@@ -39,17 +43,13 @@ export class PlayerPlacement extends BodyPlacement {
     if (interactions) {
       interactions.doInteraction();
     }
-    // would need to mount the things to make it interactable and then tear it donw
 
-    // // Need to see if they can be interactable
-    // if (interactions) {
-    //   useKeyPress("space", (interactable) => {
-    //     this.handleInteractions(interactable);
-    //   });
-    // }
+    const completesLevel = this.getCompletesNextPosition(direction);
+    if (completesLevel) {
+      this.animationStart = true;
+    }
 
     const possibleLock = this.getLockAtNextPosition(direction);
-    console.log(this.level.inventory);
     if (possibleLock) {
       possibleLock.unlock();
       return;
@@ -67,6 +67,17 @@ export class PlayerPlacement extends BodyPlacement {
 
   tick() {
     this.tickMovingPixelProgress();
+    if (this.animationStart) {
+      this.startTickCount();
+    }
+  }
+
+  startTickCount() {
+    this.tickCount += 16.6;
+    if (this.tickCount >= 16.6 * this.endTickAnimation) {
+      this.level.setCompleteLevel();
+      this.level.inventory.add("SWORD", "WEDDING");
+    }
   }
 
   handleInteraction(interaction) {
@@ -84,6 +95,12 @@ export class PlayerPlacement extends BodyPlacement {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withLock();
   }
+
+  getCompletesNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    return collision.withCompletesLevel();
+  }
+
   handleMoveSounds() {
     if (this.level.theme === LEVEL_THEMES.HIDING) {
       this.distance = this.getCurrentDistanceFromTarget();
@@ -112,11 +129,13 @@ export class PlayerPlacement extends BodyPlacement {
   }
   renderComponent() {
     return (
-      <Body
-        frameCoord={this.getFrame()}
-        yTranslate={this.getYTranslate}
-        showShadow
-      />
+      <div>
+        <Body
+          frameCoord={this.getFrame()}
+          yTranslate={this.getYTranslate}
+          showShadow
+        />
+      </div>
     );
   }
 }

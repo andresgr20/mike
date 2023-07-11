@@ -21,6 +21,7 @@ import {
   ENEMY,
   PLACEMENT_ENEMY,
   BEHAVIOURS,
+  PLACEMENT_GOAL_NPC,
 } from "../helpers/consts";
 import { TILES } from "../helpers/tiles";
 
@@ -522,10 +523,13 @@ const createPrison = () => {
       tile.color = KEYS.GOLDEN;
     }
     placements.push(tile);
-    console.log(placements);
   }
-  // Prison cell
-  // NPC
+  placements.push({
+    x: 24,
+    y: 3,
+    type: PLACEMENT_GOAL_NPC,
+    behaviour: BEHAVIOURS.IDLE,
+  });
 };
 
 createWalls(10, "TOP", 1, 10, 5);

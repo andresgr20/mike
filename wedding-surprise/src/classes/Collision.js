@@ -23,7 +23,6 @@ export class Collision {
 
   withPlacementAddsToInventory() {
     if (this.forBody.canCollectItems) {
-      console.log("hi");
       return this.placementsAtPosition.find((p) => {
         return (
           !p.hasBeenCollected && p.addsItemsToInventoryOnCollide(this.forBody)
@@ -33,6 +32,11 @@ export class Collision {
     return null;
   }
 
+  withCompletesLevel() {
+    return this.placementsAtPosition.find((p) => {
+      return p.completesLevelOnCollide();
+    });
+  }
   withInteract() {
     return this.placementsAtPosition.find((p) => {
       return p.canBeInteracted();

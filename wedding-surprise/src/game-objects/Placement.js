@@ -59,8 +59,10 @@ export class Placement {
 
   collect() {
     this.hasBeenCollected = true;
-    this.level.inventory.add(this.addsItemsToInventoryOnCollide());
-    console.log("hi");
+    this.level.inventory.add(
+      this.addsItemsToInventoryOnCollide(),
+      this.level.theme
+    );
   }
 
   canBeInteracted() {
@@ -79,12 +81,25 @@ export class Placement {
     return null;
   }
 
+  completesLevelOnCollide() {
+    return false;
+  }
+
   displayXY() {
     if (this.movingPixelRemaining > 0) {
       return this.displayMovingXY();
     }
     const x = this.x * CELL_SIZE + "px";
     const y = this.y * CELL_SIZE + "px";
+    return [x, y];
+  }
+
+  displayXYNoPx() {
+    if (this.movingPixelRemaining > 0) {
+      return this.displayMovingXY();
+    }
+    const x = this.x * CELL_SIZE;
+    const y = this.y * CELL_SIZE;
     return [x, y];
   }
 

@@ -45,6 +45,14 @@ export class NPCPlacement extends BodyPlacement {
   }
 
   internalMoveRequested(direction) {
+    if (this.behaviour === BEHAVIOURS.IDLE) {
+      this.spriteFacingDirection =
+        this.spriteFacingDirection === DIRECTION_LEFT
+          ? DIRECTION_RIGHT
+          : DIRECTION_LEFT;
+      this.updateFacingDirection();
+      return;
+    }
     if (this.movingPixelRemaining > 0) {
       return;
     }

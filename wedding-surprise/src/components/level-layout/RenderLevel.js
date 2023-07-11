@@ -45,6 +45,9 @@ export default function RenderLevel() {
   if (!level) {
     return null;
   }
+  // const cameraTranslate = `translate3d(${level.cameraTransformX}, ${level.cameraTransformY}, 0)`;
+
+  // console.log(cameraTranslate);
   return (
     <div
       className={styles.fullScreenContainer}
@@ -55,12 +58,18 @@ export default function RenderLevel() {
       {/* <GameScore level={level} />
       {level.time && <ClockCount level={level} />} */}
       <div className={styles.gameScreen}>
-        <LevelBackgroundTilesLayer level={level} />
-        <LevelPlacementLayer level={level} />
+        <div
+        // style={{
+        //   transform: cameraTranslate,
+        // }}
+        >
+          <LevelBackgroundTilesLayer level={level} />
+          <LevelPlacementLayer level={level} />
+        </div>
       </div>
       <TopHud level={level} />
-      {level.isCompleted && <GameCompleteMessage />}
-      {level.gameOver && <GameOver />}
+      {/* {level.isCompleted && <GameCompleteMessage />}
+      {level.gameOver && <GameOver />} */}
     </div>
   );
 }

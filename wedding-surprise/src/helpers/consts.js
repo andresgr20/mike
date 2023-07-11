@@ -20,7 +20,9 @@ export const PLACEMENT_TORCH = "TORCH";
 export const PLACEMENT_FAIRY = "FAIRY";
 export const PLACEMENT_ENEMY = "ENEMY";
 export const PLACEMENT_BOSS = "BOSS";
+export const PLACEMENT_HEART = "HEART";
 export const GAMEOVER_CLOCK = "CLOCK";
+export const PLACEMENT_GOAL_NPC = "NPCGOAL";
 
 export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
@@ -67,6 +69,7 @@ export const NPCS = {
   BUNNY: "BUNNY",
   NPC1: "NPC1",
   NPC2: "NPC2",
+  PRISONER: "PRISONER",
 };
 
 export const THEME_BACKGROUNDS = {
@@ -140,6 +143,13 @@ export const NPC_MAP = {
     MOVE_LEFT: "4x13",
     LEFT: "0x13",
     IDLE: "2x13",
+  },
+  [NPCS.PRISONER]: {
+    RIGHT: "2x21",
+    MOVE_RIGHT: "6x21",
+    MOVE_LEFT: "4x21",
+    LEFT: "0x21",
+    IDLE: "2x21",
   },
 };
 

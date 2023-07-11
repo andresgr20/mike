@@ -10,7 +10,7 @@ export class EnemyPlacement extends NPCPlacement {
   }
   checkForOverlapPlayer() {
     const [myX, myY] = this.displayXY();
-    const [playerX, playerY] = this.level.heroRef.displayXY();
+    const [playerX, playerY] = this.level.playerRef.displayXY();
     const xDiff = Math.abs(myX - playerX);
     const yDiff = Math.abs(myY - playerY);
     if (xDiff <= 2 && yDiff <= 2) {

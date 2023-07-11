@@ -30,6 +30,7 @@ export class HidingGame extends Level {
     if (this.score < this.winningScore) {
       this.hideCat(this.cat);
     } else {
+      this.inventory.add("CAT_ICON", "WEDDING");
       this.setCompleteLevel();
     }
   }

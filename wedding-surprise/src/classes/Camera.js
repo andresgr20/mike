@@ -8,15 +8,15 @@ import {
 
 const CAMERA_SPEED = 0.02;
 const CAMERA_LOOKAHEAD = 3;
-const USE_SMOOTH_CAMERA = true;
+const USE_SMOOTH_CAMERA = false;
 
 export class Camera {
   constructor(level) {
     this.level = level;
-    const [heroX, heroY] = this.level.heroRef.displayXY();
-    this.cameraX = heroX;
-    this.cameraY = heroY;
-    this.transformOffset = -5.5 * CELL_SIZE;
+    const [playerX, playerY] = this.level.playerRef.displayXYNoPx();
+    this.cameraX = playerX;
+    this.cameraY = playerY;
+    this.transformOffset = -2.0 * CELL_SIZE;
   }
 
   get transformX() {
@@ -32,21 +32,21 @@ export class Camera {
   }
 
   tick() {
-    // Start where the Hero is now
-    const hero = this.level.heroRef;
-    const [heroX, heroY] = hero.displayXY();
-    let cameraDestinationX = heroX;
-    let cameraDestinationY = heroY;
+    // Start where the player is now
+    const player = this.level.playerRef;
+    const [playerX, playerY] = player.displayXYNoPx();
+    let cameraDestinationX = playerX;
+    let cameraDestinationY = playerY;
 
-    //If moving, put the camera slightly ahead of where Hero is going
-    if (hero.movingPixelRemaining > 0) {
-      if (hero.movingPixelDirection === DIRECTION_DOWN) {
+    //If moving, put the camera slightly ahead of where player is going
+    if (player.movingPixelRemaining > 0) {
+      if (player.movingPixelDirection === DIRECTION_DOWN) {
         cameraDestinationY += CAMERA_LOOKAHEAD * CELL_SIZE;
-      } else if (hero.movingPixelDirection === DIRECTION_UP) {
+      } else if (player.movingPixelDirection === DIRECTION_UP) {
         cameraDestinationY -= CAMERA_LOOKAHEAD * CELL_SIZE;
-      } else if (hero.movingPixelDirection === DIRECTION_LEFT) {
+      } else if (player.movingPixelDirection === DIRECTION_LEFT) {
         cameraDestinationX -= CAMERA_LOOKAHEAD * CELL_SIZE;
-      } else if (hero.movingPixelDirection === DIRECTION_RIGHT) {
+      } else if (player.movingPixelDirection === DIRECTION_RIGHT) {
         cameraDestinationX += CAMERA_LOOKAHEAD * CELL_SIZE;
       }
     }
