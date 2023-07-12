@@ -88,7 +88,7 @@ export class Level {
     });
 
     this.animatedFrames.tick();
-    // this.camera.tick();
+    this.camera.tick();
     this.clock?.tick();
 
     this.onEmit(this.getState());
@@ -122,6 +122,7 @@ export class Level {
       nextLevelId: this.nextLevelId,
       nextLevelName: this.nextLevelName,
       nextLevelDescription: this.nextLevelDescription,
+      restart: () => this.restart(),
     };
   }
 

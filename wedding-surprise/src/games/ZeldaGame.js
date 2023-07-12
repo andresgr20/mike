@@ -1,9 +1,6 @@
 import {
   LEVEL_THEMES,
   PLACEMENT_PLAYER,
-  PLACEMENT_GIFT,
-  PLACEMENT_WOOD,
-  PLACEMENT_INTERACTIVE,
   PLACEMENT_FLOWERS,
   PLACEMENT_NPC,
   NPCS,
@@ -109,7 +106,6 @@ const placements = [
   { x: 13, y: 8, type: PLACEMENT_WATER },
   { x: 14, y: 8, type: PLACEMENT_WATER },
   { x: 15, y: 8, type: PLACEMENT_WATER },
-  { x: 16, y: 8, type: PLACEMENT_WATER },
   { x: 17, y: 8, type: PLACEMENT_WATER },
   { x: 18, y: 8, type: PLACEMENT_WATER },
   { x: 19, y: 8, type: PLACEMENT_WATER },
@@ -482,11 +478,11 @@ const createWalls = (total, wallType, startX, startY, skip = undefined) => {
       continue;
     }
     let x, y;
-    if (wallType == "TOP" || wallType == "BOTTOM") {
+    if (wallType === "TOP" || wallType === "BOTTOM") {
       x = startX + i;
       y = startY;
     }
-    if (wallType == "LEFT" || wallType == "RIGHT") {
+    if (wallType === "LEFT" || wallType === "RIGHT") {
       x = startX;
       y = startY + i;
     }
@@ -546,7 +542,7 @@ const game = {
   theme: LEVEL_THEMES.ZELDA,
   tilesWidth: 30,
   tilesHeight: 21,
-  time: 900000,
+  time: 900,
   placements: placements,
 };
 

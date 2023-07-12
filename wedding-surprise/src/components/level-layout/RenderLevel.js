@@ -6,7 +6,7 @@ import LevelPlacementLayer from "./LevelPlacementsLayer";
 import { useRecoilValue } from "recoil";
 import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 import GameCompleteMessage from "../hud/GameCompleteMessage";
-import soundManager, { MUSIC } from "../../classes/Sounds";
+import soundsManager, { MUSIC } from "../../classes/Sounds";
 import GameOver from "../hud/GameOver";
 import TopHud from "../hud/TopHud";
 import { currentMainInventoryAtom } from "../../atoms/currentMainInventoryAtom";
@@ -14,7 +14,6 @@ import { Level } from "../../classes/Level";
 import NextLevelMessage from "../hud/NextLevelMessage";
 export default function RenderLevel({ player }) {
   const [level, setLevel] = useState(null);
-  // would need to use an atom to save the values when going back to the other games
   const currentLevelId = useRecoilValue(currentLevelIdAtom);
   const currentMainInventory = useRecoilValue(currentMainInventoryAtom);
 
@@ -33,7 +32,10 @@ export default function RenderLevel({ player }) {
     levelState.setInventory(currentMainInventory);
     switch (levelState.getState().theme) {
       case LEVEL_THEMES.WEDDING:
-        soundManager.playMusic(MUSIC.DANCEFLOOR);
+        soundsManager.playMusic(MUSIC.DANCEFLOOR);
+        break;
+      case LEVEL_THEMES.ENDING:
+        soundsManager.playMusic(MUSIC.ENDING);
         break;
       default:
         break;
@@ -47,9 +49,8 @@ export default function RenderLevel({ player }) {
   if (!level) {
     return null;
   }
-  // const cameraTranslate = `translate3d(${level.cameraTransformX}, ${level.cameraTransformY}, 0)`;
+  const cameraTranslate = `translate3d(${level.cameraTransformX}, ${level.cameraTransformY}, 0)`;
 
-  // console.log(cameraTranslate);
   return (
     <div
       className={styles.fullScreenContainer}
@@ -59,9 +60,9 @@ export default function RenderLevel({ player }) {
     >
       <div className={styles.gameScreen}>
         <div
-        // style={{
-        //   transform: cameraTranslate,
-        // }}
+          style={{
+            transform: cameraTranslate,
+          }}
         >
           <LevelBackgroundTilesLayer level={level} />
           <LevelPlacementLayer level={level} />

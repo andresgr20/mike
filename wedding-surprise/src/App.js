@@ -3,10 +3,10 @@ import { PLAYERS, SPRITE_SHEET_SRC } from "./helpers/consts";
 import RenderLevel from "./components/level-layout/RenderLevel";
 import { useRecoilState } from "recoil";
 import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
-import soundManager from "./classes/Sounds";
+import soundsManager from "./classes/Sounds";
 import "./startScreen.css";
 
-soundManager.init();
+soundsManager.init();
 
 function App() {
   const [spriteSheetImage, setSpriteSheetImage] =

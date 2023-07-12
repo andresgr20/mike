@@ -6,10 +6,12 @@ export const SFX = {
 
 export const MUSIC = {
   DANCEFLOOR: "DANCEFLOOR",
+  ENDING: "ENDING",
 };
 
 const FILES = {
   [MUSIC.DANCEFLOOR]: "/sounds/music/twice.mp3",
+  [MUSIC.ENDING]: "/sounds/music/dearly-beloved.mp3",
   [SFX.MEOW]: "/sounds/sfx/meow.mp3",
   [SFX.BUSH]: "/sounds/sfx/bush.mp3",
 };
@@ -18,6 +20,7 @@ export class Sounds {
   constructor() {
     this.howls = {};
     this.volume = 0.5;
+    this.currentSound = null;
   }
 
   init() {
@@ -29,12 +32,18 @@ export class Sounds {
     });
   }
 
+  stop() {
+    if (this.currentSound) {
+      const sound = this.howls[this.currentSound];
+      sound.pause();
+    }
+  }
+
   playMusic(key) {
     const sound = this.howls[key];
-
-    // play it with current volume
-    // sound.volume(this.volume);
-    // sound.play();
+    this.currentSound = key;
+    sound.volume(this.volume);
+    sound.play();
   }
 
   playSfx(key) {
@@ -60,6 +69,6 @@ export class Sounds {
   }
 }
 
-const soundManager = new Sounds();
+const soundsManager = new Sounds();
 
-export default soundManager;
+export default soundsManager;

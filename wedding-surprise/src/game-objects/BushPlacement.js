@@ -1,7 +1,7 @@
 import { Placement } from "./Placement";
 import Sprite from "../components/graphics/Sprite";
 import { TILES } from "../helpers/tiles";
-import soundManager, { SFX } from "../classes/Sounds";
+import soundsManager, { SFX } from "../classes/Sounds";
 import { LEVEL_THEMES, Z_INDEX_LAYER_SIZE } from "../helpers/consts";
 
 export class BushPlacement extends Placement {
@@ -32,10 +32,10 @@ export class BushPlacement extends Placement {
   doInteraction() {
     if (this.hiding) {
       this.interacted = true;
-      soundManager.playSfx(SFX.BUSH);
+      soundsManager.playSfx(SFX.BUSH);
       if (this.isCatHiddenHere()) {
         this.level.catFound();
-        soundManager.playSfx(SFX.MEOW);
+        soundsManager.playSfx(SFX.MEOW);
       }
     }
   }

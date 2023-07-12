@@ -6,7 +6,7 @@ import {
 } from "../helpers/consts";
 import { BodyPlacement } from "./BodyPlacement";
 import Body from "../components/graphics/Body";
-import soundManager, { SFX } from "../classes/Sounds";
+import soundsManager, { SFX } from "../classes/Sounds";
 
 export class PlayerPlacement extends BodyPlacement {
   constructor(properties, level) {
@@ -20,7 +20,7 @@ export class PlayerPlacement extends BodyPlacement {
       this.maxDistance = Math.sqrt(
         level.tilesWidth ** 2 + level.tilesHeight ** 2
       );
-      soundManager.setVolume(this.normalizeSound);
+      soundsManager.setVolume(this.normalizeSound);
     }
   }
   controllerMoveRequested(direction) {
@@ -113,8 +113,8 @@ export class PlayerPlacement extends BodyPlacement {
   handleMoveSounds() {
     if (this.level.theme === LEVEL_THEMES.HIDING) {
       this.distance = this.getCurrentDistanceFromTarget();
-      soundManager.setVolume(this.normalizeSound());
-      soundManager.playSfx(SFX.MEOW);
+      soundsManager.setVolume(this.normalizeSound());
+      soundsManager.playSfx(SFX.MEOW);
     }
   }
   getFrame() {

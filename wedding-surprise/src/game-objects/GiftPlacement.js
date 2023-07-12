@@ -1,7 +1,7 @@
 import { Placement } from "./Placement";
 import Sprite from "../components/graphics/Sprite";
 import { TILES } from "../helpers/tiles";
-import { GIFTS } from "../helpers/consts";
+import { GIFTS, LEVEL_THEMES } from "../helpers/consts";
 
 export class GiftPlacement extends Placement {
   constructor(properties, level) {
@@ -20,7 +20,7 @@ export class GiftPlacement extends Placement {
       case GIFTS.YELLOW_GIFT:
         this.nextLevelId = "HidingGame";
         this.nextLevelName = "The next game is a Hide and Seek game";
-        this.nextLevelDescription = "You have to find Collen! She ran away!";
+        this.nextLevelDescription = "You have to find Colette! She ran away!";
         break;
       default:
         this.nextLevelId = "EndingGame";
@@ -36,7 +36,8 @@ export class GiftPlacement extends Placement {
       return true;
     }
     return (
-      this.level.inventory.has("HIDING") && this.level.inventory.has("ZELDA")
+      this.level.inventory.has(LEVEL_THEMES.HIDING) &&
+      this.level.inventory.has(LEVEL_THEMES.ZELDA)
     );
   }
 

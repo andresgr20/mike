@@ -7,7 +7,7 @@ import {
 } from "../helpers/consts";
 
 const CAMERA_SPEED = 0.02;
-const CAMERA_LOOKAHEAD = 3;
+const CAMERA_LOOKAHEAD = 0;
 const USE_SMOOTH_CAMERA = false;
 
 export class Camera {

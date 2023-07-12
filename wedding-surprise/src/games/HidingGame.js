@@ -5,8 +5,8 @@ import {
 } from "../helpers/consts";
 
 const tiles = [{ x: 1, y: 1, type: PLACEMENT_PLAYER }];
-const tilesWidth = 10;
-const tilesHeight = 12;
+const tilesWidth = 9;
+const tilesHeight = 10;
 
 const randomNumber = (bound) => Math.floor(Math.random() * bound) + 1;
 const createBushes = (cap, boundX, boundY) => {
@@ -25,7 +25,7 @@ const createBushes = (cap, boundX, boundY) => {
   }
 };
 
-createBushes(25, tilesWidth, tilesHeight);
+createBushes(15, tilesWidth, tilesHeight);
 
 const game = {
   theme: LEVEL_THEMES.HIDING,
@@ -33,7 +33,7 @@ const game = {
   tilesHeight: tilesHeight,
   score: 0,
   winningScore: 3,
-  time: 180,
+  time: 70,
   placements: tiles,
 };
 

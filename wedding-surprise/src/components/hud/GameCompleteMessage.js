@@ -33,10 +33,7 @@ export default function GameCompleteMessage({ level }) {
               You deserve a reward for keeping up with my shenanigans all these
               years.
             </p>
-            <p>
-              It's dangerous to go alone, take this Amazon Giftcard to fend the
-              capitalism away
-            </p>
+            <p>It's dangerous to go alone, take this Amazon Giftcard!</p>
             <p>Use it wisely :)</p>
             <a href="https://amazon.ca">To Capitalism</a>
           </div>
