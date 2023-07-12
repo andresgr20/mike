@@ -14,7 +14,10 @@ export class HeartPlacement extends Placement {
       this.frame += 0.01;
       return;
     }
-    this.level.deletePlacement(this);
+    if (this.frame > 4) {
+      this.frame = 1;
+      return;
+    }
   }
 
   zIndex() {

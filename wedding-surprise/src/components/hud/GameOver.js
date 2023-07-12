@@ -13,8 +13,8 @@ export default function GameOver({ level }) {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.popupContainer} onClick={handleRestart}>
-        <div>Game Over</div>
-        <p>{level.gameOverReason} </p>
+        <div className={styles.header}>Game Over</div>
+        <p className={styles.text}>{level.gameOverReason} </p>
       </div>
     </div>
   );

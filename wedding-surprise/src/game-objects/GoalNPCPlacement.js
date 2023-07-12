@@ -1,6 +1,7 @@
 import Body from "../components/graphics/Body";
 import {
   DIRECTION_LEFT,
+  LEVEL_THEMES,
   NPCS,
   NPC_MAP,
   PLAYERS,
@@ -16,7 +17,7 @@ export class GoalNPCPlacement extends NPCPlacement {
   }
 
   completesLevelOnCollide() {
-    return true;
+    return this.level.theme === LEVEL_THEMES.ZELDA;
   }
 
   renderComponent() {

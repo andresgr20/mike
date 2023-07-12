@@ -50,6 +50,11 @@ export class PlayerPlacement extends BodyPlacement {
       return;
     }
 
+    const endsGame = this.getEndGameAtNextPosition(direction);
+    if (endsGame) {
+      this.level.endGame();
+    }
+
     if (this.isSolidAtNextPosition(direction)) {
       return;
     }
@@ -88,6 +93,11 @@ export class PlayerPlacement extends BodyPlacement {
   getLockAtNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withLock();
+  }
+
+  getEndGameAtNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    return collision.withEndgame();
   }
 
   getNextLevelAtNextPosition(direction) {

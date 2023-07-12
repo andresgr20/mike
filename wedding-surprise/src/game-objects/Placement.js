@@ -51,6 +51,9 @@ export class Placement {
     return null;
   }
 
+  endsGameOnCollide() {
+    return null;
+  }
   tick() {}
 
   isSolidForBody(_body) {

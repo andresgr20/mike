@@ -17,16 +17,37 @@ export default function GameCompleteMessage({ level }) {
     }
   };
 
+  const endGame = currentId === "EndingGame";
+
   useKeyPress("Enter", () => {
     handleNextLevel();
   });
 
   return (
     <div className={styles.outerContainer}>
-      <div className={styles.popupContainer} onClick={handleNextLevel}>
-        <div>You won!</div>
-        <p>Go back to the wedding!</p>
-      </div>
+      {endGame && (
+        <div className={styles.popupContainer}>
+          <p className={styles.header}>Congrats you finished the game!</p>
+          <div className={styles.text}>
+            <p>
+              You deserve a reward for keeping up with my shenanigans all these
+              years.
+            </p>
+            <p>
+              It's dangerous to go alone, take this Amazon Giftcard to fend the
+              capitalism away
+            </p>
+            <p>Use it wisely :)</p>
+            <a href="https://amazon.ca">To Capitalism</a>
+          </div>
+        </div>
+      )}
+      {!endGame && (
+        <div className={styles.popupContainer} onClick={handleNextLevel}>
+          <div className={styles.header}>You won!</div>
+          <p className={styles.text}>Go back to the wedding!</p>
+        </div>
+      )}
     </div>
   );
 }

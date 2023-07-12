@@ -39,13 +39,14 @@ function App() {
         <div className="container">
           <div className="centered">
             <div className="bigText">Welcome to your wedding gift!</div>
-            <p>Select a character</p>
+            <p className="text"> Select a character</p>
             <div className="buttonContainer">
               <button onClick={handleCharacterMike}>Mike</button>
               <button onClick={handleCharacterAlyssa}>Alyssa</button>
             </div>
-            <p>
-              Play until the end and you get a reward :) Done by yours truly
+            <p className="text">
+              Play until the end and you get a reward :) Done by your favourite
+              living hazard
             </p>
           </div>
         </div>

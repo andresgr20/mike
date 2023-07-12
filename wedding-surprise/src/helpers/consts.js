@@ -2,7 +2,7 @@ import { TILES } from "./tiles";
 
 export const CELL_SIZE = 16; // one grid cell in the map
 export const Z_INDEX_LAYER_SIZE = 10;
-export const SPRITE_SHEET_SRC = "/wedding-v6.png";
+export const SPRITE_SHEET_SRC = "/wedding-v7.png";
 export const PLACEMENT_PLAYER = "PLAYER";
 export const PLACEMENT_GIFT = "GIFT";
 export const PLACEMENT_WOOD = "WOOD";
@@ -25,6 +25,7 @@ export const PLACEMENT_BOSS = "BOSS";
 export const PLACEMENT_HEART = "HEART";
 export const GAMEOVER_CLOCK = "CLOCK";
 export const PLACEMENT_GOAL_NPC = "NPCGOAL";
+export const PLACEMENT_END = "END";
 
 export const LEVEL_THEMES = {
   WEDDING: "WEDDING",
@@ -44,6 +45,7 @@ export const BEHAVIOURS = {
   HORIZONTAL: "HORIZONTAL",
   VERTICAL: "VERTICAL",
   IDLE: "IDLE",
+  STATIC: "STATIC",
 };
 
 export const KEYS = {
@@ -79,12 +81,14 @@ export const NPCS = {
   NPC1: "NPC1",
   NPC2: "NPC2",
   PRISONER: "PRISONER",
+  GOBLIN: "GOBLIN",
 };
 
 export const THEME_BACKGROUNDS = {
   [LEVEL_THEMES.WEDDING]: "#696a6a",
   [LEVEL_THEMES.ZELDA]: "#2d1a17",
   [LEVEL_THEMES.HIDING]: "#2d1a17",
+  [LEVEL_THEMES.ENDING]: "#696a6a",
 };
 
 export const directionUpdateMap = {
@@ -123,6 +127,13 @@ export const THEME_TILES_MAP = {
     RIGHT: "7x3",
     BOTTOM: "6x4",
   },
+  [LEVEL_THEMES.ENDING]: {
+    FLOOR: "9x22",
+    TOP: "9x21",
+    LEFT: "8x22",
+    RIGHT: "10x22",
+    BOTTOM: "9x23",
+  },
 };
 
 export const NPC_MAP = {
@@ -146,6 +157,7 @@ export const NPC_MAP = {
     MOVE_LEFT: "4x11",
     LEFT: "0x11",
     IDLE: "2x11",
+    STATIC: "2x11",
   },
   [NPCS.NPC2]: {
     RIGHT: "2x13",
@@ -153,6 +165,7 @@ export const NPC_MAP = {
     MOVE_LEFT: "4x13",
     LEFT: "0x13",
     IDLE: "2x13",
+    STATIC: "2x13",
   },
   [NPCS.PRISONER]: {
     RIGHT: "2x21",
@@ -160,6 +173,12 @@ export const NPC_MAP = {
     MOVE_LEFT: "4x21",
     LEFT: "0x21",
     IDLE: "2x21",
+  },
+  [NPCS.GOBLIN]: {
+    RIGHT: "8x15",
+    LEFT: "10x15",
+    IDLE: "8x15",
+    STATIC: "2x21",
   },
 };
 

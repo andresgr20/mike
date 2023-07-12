@@ -13,19 +13,20 @@ export class GiftPlacement extends Placement {
     switch (this.gift) {
       case GIFTS.RED_GIFT:
         this.nextLevelId = "ZeldaGame";
-        this.nextLevelName = "a Zelda like game";
+        this.nextLevelName = "The next game is a Zelda like game";
         this.nextLevelDescription =
           "You have to rescue your lover from the goblins!";
         break;
       case GIFTS.YELLOW_GIFT:
         this.nextLevelId = "HidingGame";
-        this.nextLevelName = "a Hide and Seek game";
+        this.nextLevelName = "The next game is a Hide and Seek game";
         this.nextLevelDescription = "You have to find Collen! She ran away!";
         break;
       default:
         this.nextLevelId = "EndingGame";
         this.nextLevelName = "You completed all the games";
-        this.nextLevelDescription = "Go find your lover at the altar";
+        this.nextLevelDescription =
+          "Go find your lover at the altar. You better say yes.";
         break;
     }
   }
@@ -35,7 +36,7 @@ export class GiftPlacement extends Placement {
       return true;
     }
     return (
-      this.level.inventory.has("SWORD") && this.level.inventory.has("CAT_ICON")
+      this.level.inventory.has("HIDING") && this.level.inventory.has("ZELDA")
     );
   }
 

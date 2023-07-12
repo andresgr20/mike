@@ -6,6 +6,7 @@ import {
   DIRECTION_RIGHT,
   DIRECTION_UP,
   LEVEL_THEMES,
+  NPCS,
   NPC_MAP,
 } from "../helpers/consts";
 import Body from "../components/graphics/Body";
@@ -22,6 +23,12 @@ export class NPCPlacement extends BodyPlacement {
   }
 
   tickMoveAi() {
+    if (BEHAVIOURS.STATIC === this.behaviour) {
+      if (this.npc === NPCS.GOBLIN) {
+        this.spriteFacingDirection = DIRECTION_LEFT;
+      }
+      return;
+    }
     this.checkForOverlapPlayer();
     if (this.ticksUntilNextMove > 0) {
       this.ticksUntilNextMove -= 1;

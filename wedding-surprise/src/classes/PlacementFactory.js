@@ -27,6 +27,7 @@ import {
   PLACEMENT_BOSS,
   PLACEMENT_HEART,
   PLACEMENT_GOAL_NPC,
+  PLACEMENT_END,
 } from "../helpers/consts";
 import { FlowerPlacement } from "../game-objects/FlowerPlacement";
 import { NPCPlacement } from "../game-objects/NPCPlacement";
@@ -40,6 +41,7 @@ import { EnemyPlacement } from "../game-objects/EnemyPlacement";
 import { BossPlacement } from "../game-objects/BossPlacement";
 import { HeartPlacement } from "../game-objects/HeartPlacement";
 import { GoalNPCPlacement } from "../game-objects/GoalNPCPlacement";
+import { EndPlacement } from "../game-objects/EndPlacement";
 
 const placementTypeClassMap = {
   [PLACEMENT_GIFT]: GiftPlacement,
@@ -62,6 +64,7 @@ const placementTypeClassMap = {
   [PLACEMENT_BOSS]: BossPlacement,
   [PLACEMENT_HEART]: HeartPlacement,
   [PLACEMENT_GOAL_NPC]: GoalNPCPlacement,
+  [PLACEMENT_END]: EndPlacement,
 };
 class PlacementFactory {
   createPlacement(config, level) {

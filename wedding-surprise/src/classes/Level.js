@@ -58,6 +58,11 @@ export class Level {
     }
   }
 
+  endGame() {
+    this.isCompleted = true;
+    this.gameLoop.stop();
+  }
+
   changeLevel() {
     this.gameLoop.stop();
   }

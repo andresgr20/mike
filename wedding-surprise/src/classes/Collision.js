@@ -61,4 +61,10 @@ export class Collision {
       return p.canBeUnlocked();
     });
   }
+
+  withEndgame() {
+    return this.placementsAtPosition.find((p) => {
+      return p.endsGameOnCollide();
+    });
+  }
 }
