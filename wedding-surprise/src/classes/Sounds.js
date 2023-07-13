@@ -7,11 +7,13 @@ export const SFX = {
 export const MUSIC = {
   DANCEFLOOR: "DANCEFLOOR",
   ENDING: "ENDING",
+  ZELDA: "ZELDA",
 };
 
 const FILES = {
   [MUSIC.DANCEFLOOR]: "/sounds/music/twice.mp3",
-  [MUSIC.ENDING]: "/sounds/music/dearly-beloved.mp3",
+  [MUSIC.ENDING]: "/sounds/music/memory.mp3",
+  [MUSIC.ZELDA]: "/sounds/music/gerudo-valley.mp3",
   [SFX.MEOW]: "/sounds/sfx/meow.mp3",
   [SFX.BUSH]: "/sounds/sfx/bush.mp3",
 };
@@ -28,6 +30,7 @@ export class Sounds {
       const file = FILES[key];
       this.howls[key] = new Howl({
         src: [file],
+        loop: true,
       });
     });
   }

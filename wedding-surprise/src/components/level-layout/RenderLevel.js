@@ -37,6 +37,9 @@ export default function RenderLevel({ player }) {
       case LEVEL_THEMES.ENDING:
         soundsManager.playMusic(MUSIC.ENDING);
         break;
+      case LEVEL_THEMES.ZELDA:
+        soundsManager.playMusic(MUSIC.ZELDA);
+        break;
       default:
         break;
     }

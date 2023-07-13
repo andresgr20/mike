@@ -33,9 +33,17 @@ export default function GameCompleteMessage({ level }) {
               You deserve a reward for keeping up with my shenanigans all these
               years.
             </p>
-            <p>It's dangerous to go alone, take this Amazon Giftcard!</p>
-            <p>Use it wisely :)</p>
-            <a href="https://amazon.ca">To Capitalism</a>
+            <p>
+              It's dangerous to go alone, take this Amazon Giftcard! Use it
+              wisely :)
+            </p>
+            <a
+              target="_blank"
+              className={styles.notButton}
+              href="https://onetimesecret.com/secret/jp6eqy1k6gjo3nrcb6souxew0mvxj12"
+            >
+              To Capitalism
+            </a>
           </div>
         </div>
       )}
