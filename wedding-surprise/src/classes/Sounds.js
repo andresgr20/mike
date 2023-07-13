@@ -47,10 +47,14 @@ export class Sounds {
   stop() {
     if (this.currentSound) {
       this.currentSound.pause();
+      this.currentSound = null;
     }
   }
 
   playMusic(key) {
+    if (this.currentSound) {
+      this.currentSound.pause();
+    }
     this.currentSound = this.howls[key];
     this.currentSound.volume(this.volume);
     this.currentSound.play();
