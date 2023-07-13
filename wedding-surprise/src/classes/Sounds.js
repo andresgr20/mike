@@ -10,10 +10,13 @@ export const MUSIC = {
   ZELDA: "ZELDA",
 };
 
-const FILES = {
+const FILES_MUSIC = {
   [MUSIC.DANCEFLOOR]: "/sounds/music/twice.mp3",
   [MUSIC.ENDING]: "/sounds/music/memory.mp3",
   [MUSIC.ZELDA]: "/sounds/music/gerudo-valley.mp3",
+};
+
+const FILES_SFX = {
   [SFX.MEOW]: "/sounds/sfx/meow.mp3",
   [SFX.BUSH]: "/sounds/sfx/bush.mp3",
 };
@@ -26,11 +29,17 @@ export class Sounds {
   }
 
   init() {
-    Object.keys(FILES).forEach((key) => {
-      const file = FILES[key];
+    Object.keys(FILES_MUSIC).forEach((key) => {
+      const file = FILES_MUSIC[key];
       this.howls[key] = new Howl({
         src: [file],
         loop: true,
+      });
+    });
+    Object.keys(FILES_SFX).forEach((key) => {
+      const file = FILES_SFX[key];
+      this.howls[key] = new Howl({
+        src: [file],
       });
     });
   }

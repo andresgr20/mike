@@ -15,7 +15,7 @@ export class GiftPlacement extends Placement {
         this.nextLevelId = "ZeldaGame";
         this.nextLevelName = "The next game is a Zelda like game";
         this.nextLevelDescription =
-          "You have to rescue your lover from the goblins!";
+          "You have to rescue your lover from the goblins! Do not let them touch you";
         break;
       case GIFTS.YELLOW_GIFT:
         this.nextLevelId = "HidingGame";
