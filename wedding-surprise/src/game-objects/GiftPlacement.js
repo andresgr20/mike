@@ -17,14 +17,14 @@ export class GiftPlacement extends Placement {
         this.nextLevelDescription =
           "You have to rescue your lover from the goblins! Do not let them touch you";
         this.nextLevelInstructions =
-          "Venture out and avoid the goblins! Gotta rescure your babe";
+          "Venture out and avoid the goblins! Gotta rescue your babe";
         break;
       case GIFTS.YELLOW_GIFT:
         this.nextLevelId = "HidingGame";
         this.nextLevelName = "The next game is a Hide and Seek game";
         this.nextLevelDescription = "You have to find Colette! She ran away!";
         this.nextLevelInstructions =
-          "Find Colette in the bushes! She will meow louder when you are closer";
+          "Find Colette in the bushes! She will meow louder the closer you get";
         break;
       default:
         this.nextLevelId = "EndingGame";

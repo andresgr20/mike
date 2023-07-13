@@ -52,7 +52,7 @@ export class Sounds {
 
   playMusic(key) {
     this.currentSound = this.howls[key];
-    this.currentSoundvolume(this.volume);
+    this.currentSound.volume(this.volume);
     this.currentSound.play();
   }
 

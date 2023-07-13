@@ -224,6 +224,5 @@ export default function PixelNumber({ number }) {
     .map((key, i) => {
       return <span key={i}>{componentMap[key]}</span>;
     });
-
   return <div className={styles.pixelNumber}>{mappedChars}</div>;
 }

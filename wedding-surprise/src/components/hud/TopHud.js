@@ -9,7 +9,7 @@ export default function TopHud({ level }) {
       <div className={styles.topHudLeft}>
         {level.time && <ClockCount level={level} />}
         <InventoryVisual level={level} />
-        {level.score && <GameScore level={level} />}
+        {level.score && <GameScore score={level.score} />}
       </div>
     </div>
   );
