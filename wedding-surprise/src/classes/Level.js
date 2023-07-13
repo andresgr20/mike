@@ -29,6 +29,7 @@ export class Level {
     this.nextLevelId = null;
     this.nextLevelDescription = null;
     this.nextLevelName = null;
+    this.nextLevelInstructions = null;
     this.gameOverReason = null;
     const gamesData = GamesMap[this.id];
     this.theme = gamesData.theme;
@@ -122,6 +123,7 @@ export class Level {
       nextLevelId: this.nextLevelId,
       nextLevelName: this.nextLevelName,
       nextLevelDescription: this.nextLevelDescription,
+      nextLevelInstructions: this.nextLevelInstructions,
       restart: () => this.restart(),
     };
   }

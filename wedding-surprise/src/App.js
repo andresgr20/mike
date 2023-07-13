@@ -45,9 +45,10 @@ function App() {
               <button onClick={handleCharacterAlyssa}>Alyssa</button>
             </div>
             <p className="text">
-              Play until the end and you get a reward :) Done by your favourite
-              living hazard
+              Play until the end and you get a reward :). Every gift is a mini
+              game, but the one at the middle is special.
             </p>
+            <p className="text">Done by your favourite living hazard</p>
           </div>
         </div>
       )}

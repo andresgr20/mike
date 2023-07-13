@@ -20,6 +20,9 @@ export default function NextLevelMessage({ level }) {
       <div className={styles.popupContainer} onClick={handleNextLevel}>
         <div className={styles.header}>{level.nextLevelName}</div>
         <p className={styles.text}>{level.nextLevelDescription}</p>
+        {level.nextLevelInstructions && (
+          <p className={styles.text}>{level.nextLevelInstructions}</p>
+        )}
       </div>
     </div>
   );

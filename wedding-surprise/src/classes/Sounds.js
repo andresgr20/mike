@@ -46,16 +46,14 @@ export class Sounds {
 
   stop() {
     if (this.currentSound) {
-      const sound = this.howls[this.currentSound];
-      sound.pause();
+      this.currentSound.pause();
     }
   }
 
   playMusic(key) {
-    const sound = this.howls[key];
-    this.currentSound = key;
-    sound.volume(this.volume);
-    sound.play();
+    this.currentSound = this.howls[key];
+    this.currentSoundvolume(this.volume);
+    this.currentSound.play();
   }
 
   playSfx(key) {
